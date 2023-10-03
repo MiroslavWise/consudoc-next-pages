@@ -11,12 +11,12 @@ import type { TTypeMainScreen } from "./components/types/types"
 import { Header } from "./components/Header"
 import { FirstScreen } from "./components/FirstScreen"
 import { TwoScreen } from "./components/TwoScreen"
-import { MobileMain } from "./components/MobileMain"
 import { DoctorScreen } from "./components/DoctorScreen"
 
 const ModalTerms = dynamic(() => import("../ModalTerms"), { ssr: false })
 const Registration = dynamic(() => import("../Registration"), { ssr: false })
 const LoginScreen = dynamic(() => import("../LoginScreen"), { ssr: false })
+const MobileMain = dynamic(() => import("./components/MobileMain"), { ssr: false })
 
 import styles from "./style.module.scss"
 

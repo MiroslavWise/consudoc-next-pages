@@ -155,7 +155,7 @@ export function FormChange() {
                 />
             </div>
             <form onSubmit={onSubmit} className={styles[styleIsMobile]}>
-                <div className={cx(styles.inputs, styles[styleIsMobile])}>
+                <div className={cx(styles.inputs)}>
                     <div className={styles.labelInput}>
                         <label>Имя</label>
                         <input placeholder="Имя" {...register("name", { required: true })} />
@@ -206,7 +206,7 @@ export function FormChange() {
                         />
                     </div>
                 </div>
-                <div className={cx(styles.buttons, styles[styleIsMobile])}>
+                <div className={cx(styles.buttons)}>
                     <button type="submit">
                         <span>сохранить</span>
                     </button>

@@ -17,11 +17,7 @@ import type { TTypeMainScreen } from "./types/types"
 
 import styles from "./styles/mobile-main.module.scss"
 
-export const MobileMain = ({
-    setState,
-}: {
-    setState: Dispatch<SetStateAction<TTypeMainScreen>>
-}) => {
+const MobileMain = ({ setState }: { setState: Dispatch<SetStateAction<TTypeMainScreen>> }) => {
     const { t } = useTranslation()
 
     const isAppleStore = isIOS || isIOS13 || isIPhone13 || isIPod13 || isIPad13
@@ -88,3 +84,5 @@ export const MobileMain = ({
         </main>
     )
 }
+
+export default MobileMain

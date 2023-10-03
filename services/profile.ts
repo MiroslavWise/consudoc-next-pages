@@ -1,6 +1,6 @@
 import dayjs from "dayjs"
 
-import type { TGender } from "@/types/general"
+import type { TGender, TStatusCall } from "@/types/general"
 import type { IProfile } from "@/store/types/useProfile"
 
 import { requestPOST_FORM, requestPUT, requestGET } from "./general-api"
@@ -26,7 +26,7 @@ export const setUploadPhoto = async (data: any) => {
 }
 
 export const getDoctorRemark = async (page?: number) => {
-    return requestGET<any[]>("profile/doctor-remark/")
+    return requestGET<IRemark[]>("profile/doctor-remark/")
 }
 
 export const setUpdateProfile = async (data: IValueDataProfile) => {
@@ -40,4 +40,31 @@ export const setUpdateProfile = async (data: IValueDataProfile) => {
 
 export const setUpdateUser = async (data: IValueDataUser) => {
     return requestPUT("profile/update-user/", data)
+}
+
+export interface IRemark {
+    conference: {
+        conference_currency: {
+            id: number
+            name: string
+        }
+        conference_time: {
+            id: number
+            price: string
+            sessions_time: string
+        }
+        created_at: Date | string
+        doctor_specialization: any[]
+        id: number
+        specialization_name: string
+        status: TStatusCall
+        uuid: string
+    }
+    id: number
+    patient: number
+    profile_doctor: {
+        avatar_url: string
+        full_name: string
+    }
+    text: string
 }

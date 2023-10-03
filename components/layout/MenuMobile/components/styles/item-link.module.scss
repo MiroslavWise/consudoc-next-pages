@@ -4,22 +4,22 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2px;
+    gap: 4px;
+    cursor: pointer;
 
     & > p {
-        color: var(--gray-700);
+        color: var(--gray-600);
         text-align: center;
-        font-size: 11px;
+        font-size: 12px;
         font-style: normal;
-        font-weight: 500;
-        line-height: 15px;
-        letter-spacing: -0.5px;
+        font-weight: 600;
+        letter-spacing: -0.6px;
+        transition: all 0.2s ease-in-out 0.01s;
     }
 
-    &.active{
-        &>p{
-            color: var(--error-800);
-            font-weight: 700;
+    &.active {
+        & > p {
+            color: var(--red);
         }
     }
 }

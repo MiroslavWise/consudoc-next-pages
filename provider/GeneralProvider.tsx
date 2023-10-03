@@ -4,7 +4,6 @@ import { Header } from "@/components/layout/Header"
 import { Authorization } from "@/context/Authorization"
 import { LoadDataPerson } from "@/context/LoadDataPerson"
 import { ProviderWebSocket } from "@/context/useWebSocket"
-import { MenuMobile } from "@/components/layout/MenuMobile"
 import { ContextJanusVideoRoom } from "@/context/JanusContext"
 import { ReactQueryProvider } from "@/context/ReactQueryProvider"
 import { Feedback, IncomingCall, OutgoingCall } from "@/components/Janus"
@@ -20,9 +19,7 @@ export default function GeneralProvider({ children }: IProps) {
             <Authorization>
                 <ProviderWebSocket>
                     <ContextJanusVideoRoom>
-                        <Header />
                         <LoadDataPerson>{children}</LoadDataPerson>
-                        <MenuMobile />
                         <IncomingCall />
                         <Feedback />
                         <OutgoingCall />

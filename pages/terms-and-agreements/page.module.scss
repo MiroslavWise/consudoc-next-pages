@@ -1,0 +1,80 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+
+    & > section {
+        & > ul {
+            overflow-y: scroll;
+            height: calc(100vh - 98px - 65px - 65px);
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+            & > h3 {
+                width: 100%;
+                color: var(--gray-800);
+                text-align: center;
+                font-size: 30px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 38px;
+            }
+
+            & > h5 {
+                width: 100%;
+                color: var(--gray-800);
+                text-align: center;
+                font-size: 25px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 30px;
+            }
+
+            section {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                & > h3 {
+                    color: var(--gray-700);
+                    font-size: 25px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 30px;
+                }
+                & > p {
+                    color: var(--gray-900);
+                    font-size: 22px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 25px;
+
+                    span {
+                        font-weight: 600;
+                    }
+
+                    &.leftBorder {
+                        padding-left: 10px;
+                        border-left: 2px solid var(--primary-300);
+                    }
+                }
+
+                & > h4 {
+                    color: var(--color-text);
+                    font-size: 25px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 30px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 746px) {
+    .wrapper {
+    }
+}

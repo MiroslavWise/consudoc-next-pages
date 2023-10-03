@@ -15,34 +15,6 @@
             gap: 20px 20px;
             grid-template-columns: repeat(4, calc(25% - 20px));
         }
-
-        &.mobile {
-            .inputs {
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-            }
-        }
-    }
-
-    &.mobile {
-        .wrapperPhoto {
-            height: auto;
-            width: 100%;
-            aspect-ratio: 1/1;
-            img {
-                object-fit: cover;
-                height: 100%;
-                width: 100%;
-                aspect-ratio: 1/1;
-            }
-            .imageUp {
-                height: 30px;
-                width: 30px;
-                right: 15px;
-                bottom: 15px;
-            }
-        }
     }
 }
 
@@ -124,29 +96,6 @@
     }
 }
 
-.mobile {
-    .labelInput {
-        gap: 4px;
-        & > label {
-            color: var(--gray-900);
-            font-weight: 500;
-        }
-    }
-
-    .buttons {
-        padding: 20px 0 0;
-
-        button {
-            border-radius: 24px;
-            border: none;
-            background: var(--gradient-success);
-            span {
-                color: var(--white);
-            }
-        }
-    }
-}
-
 .buttons {
     display: flex;
     flex-direction: row;
@@ -156,16 +105,18 @@
     padding: 60px 0 0;
 
     button {
-        border-radius: 10px;
-        border: 2px solid var(--error-600);
-        padding: 13px 40px;
-        background: var(--background-input);
+        max-width: 180px;
+        width: 100%;
+        border-radius: 7px;
+        border: 2px solid var(--red);
+        padding: 8px 16px;
+        background: var(--red);
         cursor: pointer;
 
         span {
-            color: var(--error-600);
+            color: var(--white);
             text-align: center;
-            font-size: 18px;
+            font-size: 20px;
             font-style: normal;
             font-weight: 600;
             line-height: normal;
@@ -199,6 +150,54 @@
         bottom: 5px;
         pointer-events: none;
         filter: invert(1);
+    }
+}
+
+@media screen and (max-width: 746px) {
+    .container {
+        form {
+            .inputs {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    }
+
+    .buttons {
+        padding: 20px 0 0;
+        button {
+            max-width: 100%;
+            span {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .labelInput {
+        gap: 4px;
+        & > label {
+            color: var(--gray-900);
+            font-weight: 500;
+        }
+    }
+
+    .wrapperPhoto {
+        height: auto;
+        width: 100%;
+        aspect-ratio: 1/1;
+        img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+            aspect-ratio: 1/1;
+        }
+        .imageUp {
+            height: 30px;
+            width: 30px;
+            right: 15px;
+            bottom: 15px;
+        }
     }
 }
 

@@ -5,27 +5,32 @@
     width: 100%;
     border-radius: 0px 50px;
     background: var(--background);
-    box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.2);
     z-index: 5;
     padding-top: 36px;
-    padding-left: 58px;
-    padding-right: 10px;
+    padding-left: 28px;
+    padding-right: 8px;
     display: flex;
     flex-direction: column;
     gap: 30px;
 
-    header {
+    & > header {
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 15px;
+        gap: 16px;
         cursor: pointer;
 
-        img {
+        & > div {
             height: 53px;
             width: 53px;
-            border-radius: 50%;
-            object-fit: cover;
+
+            img {
+                height: 53px;
+                width: 53px;
+                border-radius: 16px;
+                object-fit: cover;
+            }
         }
 
         p {
@@ -33,7 +38,15 @@
             font-size: 20px;
             font-style: normal;
             font-weight: 500;
-            line-height: 25px;
+        }
+    }
+}
+
+@media screen and (max-width: 746px) {
+    .wrapper {
+        display: none;
+        & > header {
+            display: none;
         }
     }
 }

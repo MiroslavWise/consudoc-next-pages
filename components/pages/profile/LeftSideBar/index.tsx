@@ -19,9 +19,17 @@ export const LeftSideBar = memo(function LeftSideBar() {
     return !isMobile ? (
         <aside className={styles.wrapper}>
             <header onClick={() => handlePush("/profile")}>
-                {photo ? (
-                    <Image src={photo!} alt="avatar" height={400} width={400} unoptimized />
-                ) : null}
+                <div>
+                    {photo ? (
+                        <Image
+                            src={photo!}
+                            alt="avatar"
+                            height={400}
+                            width={400}
+                            unoptimized
+                        />
+                    ) : null}
+                </div>
                 <p>{get_full_name || ""}</p>
             </header>
             <Links />

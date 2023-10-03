@@ -12,7 +12,7 @@ export const TwoScreen = () => {
             </div>
             <div className={styles.fourSteps}>
                 {FOUR_STEPS.map((item) => (
-                    <div className={styles.item}>
+                    <div className={styles.item} key={`${item.title}-key-item-two-screen`}>
                         <div className={styles.image}>
                             <Image
                                 src={item.image.src}

@@ -2,7 +2,7 @@ import styles from "./style.module.scss"
 
 export const PublicOffer = () => {
     return (
-        <>
+        <ul>
             <h3>ПУБЛИЧНАЯ ОФЕРТА</h3>
             <h5>на оказание информационных услуг на Учебном портале «Consudoc.kz»</h5>
             <section>
@@ -460,6 +460,6 @@ export const PublicOffer = () => {
                     <span>partners@speenat.kz</span>.
                 </p>
             </section>
-        </>
+        </ul>
     )
 }

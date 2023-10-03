@@ -12,6 +12,74 @@ body {
     height: 100vh;
     width: 100%;
     overflow: hidden;
+    scrollbar-color: #6969dd #e0e0e0;
+    scrollbar-width: thin;
+}
+
+#__next {
+    & > .main-div {
+        width: 100%;
+        height: 100%;
+        & > header {
+            position: -webkit-sticky;
+            position: -moz-sticky;
+            position: -o-sticky;
+            position: -ms-sticky;
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            height: 98px;
+            padding: 10px clamp(10px, 2%, 140px);
+            background: var(--background);
+            box-shadow: 0px 5px 7.5px 0px rgba(0, 0, 0, 0.12);
+            z-index: 20;
+        }
+
+        & > main {
+            height: calc(100vh - 98px);
+        }
+
+        & > footer {
+            position: fixed;
+            bottom: -68px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 68px;
+            display: grid;
+            grid-template-columns: repeat(5, 20%);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(6px);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out 0.01s;
+            touch-action: none;
+        }
+    }
+
+    @media screen and (max-width: 746px) {
+        & > .main-div {
+            & > header {
+                height: 68px;
+            }
+            & > main {
+                height: calc(100vh - 68px - 68px);
+            }
+            & > footer {
+                bottom: 0;
+                opacity: 1;
+                visibility: visible;
+                touch-action: auto;
+            }
+        }
+    }
 }
 
 p,
@@ -36,14 +104,34 @@ i {
 ul,
 textarea,
 section,
+form,
 div {
+    scrollbar-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.2);
+    scrollbar-width: 10px;
+    scrollbar-track-color: rgba(0, 0, 0, 0.1);
+
     list-style: none;
-    scrollbar-width: none !important;
     scroll-behavior: smooth;
     -ms-overflow-style: none !important;
 
     &::-webkit-scrollbar {
-        display: none !important;
+        width: 10px;
+    }
+    &::-webkit-scrollbar-track,
+    scrollbar-track {
+        position: fixed;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-top-left-radius: 0;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb,
+    scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-top-left-radius: 0;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
     }
 }
 
@@ -61,6 +149,7 @@ div {
     --opacity-white-hard: rgba(255, 255, 255, 0.2);
     --red: #d40408;
     --black: #171321;
+    --stroke: rgb(195, 195, 195);
 
     //Color Gary
     --gray-900: #101828;
@@ -148,18 +237,6 @@ div {
     --gray-200: #3f4251;
     --gray-100: #2c3041;
     --gray-50: #232738;
-}
-
-ul,
-div,
-form {
-    list-style: none;
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
-
-    &::-webkit-scrollbar {
-        display: none !important;
-    }
 }
 
 .ant-modal-content {

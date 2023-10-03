@@ -2,7 +2,7 @@ import styles from "./style.module.scss"
 
 export const OnlinePayments = () => {
     return (
-        <>
+        <ul>
             <h3>Безопасность онлайн-платежей</h3>
             <section>
                 <h3>Платежи. Оплата банковской картой онлайн</h3>
@@ -142,6 +142,6 @@ export const OnlinePayments = () => {
                     водно-зеленом бульваре"
                 </p>
             </section>
-        </>
+        </ul>
     )
 }

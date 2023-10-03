@@ -23,7 +23,7 @@ export const ItemMedicalRecord: TItemMedicalRecord = ({
     return (
         <li className={cx(styles.container)}>
             <header>
-                <Image src={avatar_url!} alt="avatar" width={400} height={400} />
+                <Image src={avatar_url!} alt="avatar" width={400} height={400} unoptimized />
                 <h3>{full_name || ""}</h3>
             </header>
             <section>

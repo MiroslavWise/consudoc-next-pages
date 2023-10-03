@@ -96,6 +96,17 @@ i {
     line-height: 120%;
 }
 
+p {
+    &[data-left-border="true"] {
+        padding-left: 10px;
+        border-left: 2px solid var(--primary-300);
+    }
+    &[data-left-dabble]{
+        padding-left: 15px;
+        border-left: 4px solid var(--primary-300);
+    }
+}
+
 .main_pages {
     height: 100%;
     width: 100%;

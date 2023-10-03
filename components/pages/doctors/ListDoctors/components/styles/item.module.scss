@@ -1,0 +1,169 @@
+.container {
+    position: relative;
+    max-width: 1350px;
+    width: 100%;
+    border-radius: 10px;
+    background: var(--background);
+    box-shadow: 0px 5px 7.5px 0px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    z-index: 2;
+    cursor: pointer;
+    overflow: hidden;
+
+    h4 {
+        color: var(--color-text);
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 30px;
+        max-width: 350px;
+        width: 100%;
+    }
+
+    .statusVertical {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 12px;
+        background: var(--gray-400);
+        transition: all 0.3s ease-in-out 0.01s;
+
+        &.online {
+            background: var(--success-500);
+            animation: pingStatusOnline 2s infinite;
+        }
+        &.busy {
+            background: var(--error-600);
+        }
+        &.offline {
+            background: var(--gray-400);
+        }
+    }
+
+    &.mobile {
+        height: 54px !important;
+        padding-right: calc(5px + 6px);
+        padding-left: 5px;
+        border-radius: 5px;
+        gap: 5px;
+
+        & > h4 {
+            font-size: 14px;
+            text-wrap: nowrap;
+            line-height: 16px;
+        }
+
+        .avatar {
+            height: 30px;
+            width: 30px;
+            border-radius: 3px;
+        }
+
+        .statusVertical {
+            width: 6px;
+        }
+    }
+}
+
+.status {
+    width: 98px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9px;
+    background: transparent !important;
+    border: 2px solid var(--gray-400);
+    justify-self: flex-end;
+
+    span {
+        background: transparent !important;
+        color: var(--gray-400);
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px;
+    }
+
+    &.online {
+        animation: pingStatusOnline 2s infinite;
+        border-color: var(--success-500);
+        span {
+            color: var(--success-500);
+            animation: pingStatusOnline 2s infinite;
+        }
+    }
+    &.offline {
+        border-color: var(--gray-400);
+        span {
+            color: var(--gray-400);
+        }
+    }
+    &.busy {
+        border-color: var(--error-600);
+        span {
+            color: var(--error-600);
+        }
+    }
+}
+
+.avatar {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.rate {
+    // max-width: 300px;
+    // width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    height: 25px;
+
+    ul {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 5px !important;
+        height: 25px !important;
+        li {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+    }
+
+    p {
+        color: var(--color-text);
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 30px;
+    }
+}
+
+@keyframes pingStatusOnline {
+    from {
+        background: var(--success-500);
+        border-color: var(--success-500);
+        color: var(--success-500);
+    }
+
+    50% {
+        background: var(--success-700);
+        border-color: var(--success-700);
+        color: var(--success-700);
+    }
+
+    to {
+        background: var(--success-500);
+        border-color: var(--success-500);
+        color: var(--success-500);
+    }
+}

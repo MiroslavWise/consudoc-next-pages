@@ -1,0 +1,65 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    & > section {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, calc(50% - 13px));
+        gap: 20px 20px;
+    }
+
+    .flexEnd {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+
+        & > button {
+            max-width: 180px;
+            width: 100%;
+            padding: 8px 16px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 7px;
+            background: var(--red);
+            border: 2px solid var(--red);
+            outline: none !important;
+
+            span {
+                color: var(--white);
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 120%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 746px) {
+    .container {
+        gap: 20px;
+
+        & > section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .flexEnd {
+            & > button {
+                max-width: fit-content;
+
+                span {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}

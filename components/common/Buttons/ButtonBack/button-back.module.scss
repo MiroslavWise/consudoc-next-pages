@@ -1,0 +1,12 @@
+.container {
+    height: 40px;
+    width: 40px;
+    border-radius: 100px;
+    border: 1px solid var(--gray-900);
+    background: var(--supporting-white);
+    box-shadow: 0px 11px 20px 0px rgba(100, 104, 115, 0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

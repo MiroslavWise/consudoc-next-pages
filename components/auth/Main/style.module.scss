@@ -1,0 +1,13 @@
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    gap: 50px;
+    overflow-y: auto;
+
+    @media screen and (max-width: 746px) {
+        justify-content: center;
+    }
+}

@@ -1,0 +1,196 @@
+.container {
+    width: 100%;
+    border-radius: 10px;
+    background: var(--background);
+    box-shadow: 0px 5px 7.5px 0px rgba(0, 0, 0, 0.12);
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+
+    & > header {
+        width: 100%;
+        padding: 10px 30px;
+        border-radius: 10px 10px 0px 0px;
+        box-shadow: 0px 2px 7.5px 0px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+
+        & > h3,
+        & > h6 {
+            color: var(--color-text);
+            font-style: normal;
+        }
+
+        & > h3 {
+            font-size: 25px;
+            font-weight: 500;
+            line-height: 28px;
+        }
+        & > h6 {
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 17px;
+        }
+    }
+    & > section {
+        width: 100%;
+        padding: 10px 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+
+        & > div {
+            & > label,
+            & > i {
+                font-size: 15px;
+                font-weight: 400;
+                line-height: 17px;
+            }
+
+            & > label {
+                color: var(--gray-800);
+            }
+            & > i {
+                color: var(--gray-600);
+            }
+        }
+    }
+
+    & > footer {
+        width: 100%;
+        padding: 10px 30px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+
+        .success,
+        .error {
+            width: 100%;
+            padding: 8px 16px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 7px;
+
+            span {
+                color: var(--color-text);
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 120%;
+            }
+        }
+
+        .success {
+            background: var(--red);
+            border: 2px solid var(--red);
+            span {
+                color: var(--white);
+            }
+        }
+        .error {
+            background: transparent !important;
+            border: 2px solid var(--black);
+            span {
+                color: var(--black);
+            }
+        }
+    }
+}
+
+.popup {
+    z-index: 22;
+    position: absolute;
+    padding: 20px;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.62);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    transition: all 0.3s ease-in-out 0.01s;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    h3 {
+        color: var(--color-text);
+        text-align: center;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px;
+    }
+
+    & > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .success,
+    .error {
+        max-width: 210px;
+        width: 100%;
+        padding: 6px 12px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 7px;
+
+        span {
+            color: var(--color-text);
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 18px;
+            text-wrap: nowrap;
+        }
+    }
+
+    .success {
+        background: var(--red);
+        border: 2px solid var(--red);
+        span {
+            color: var(--white);
+        }
+    }
+    .error {
+        background: transparent !important;
+        border: 2px solid var(--black);
+        span {
+            color: var(--black);
+        }
+    }
+}
+
+@media screen and (max-width: 746px) {
+    .container {
+        & > header {
+            padding: 10px 20px;
+        }
+
+        & > footer {
+            .success,
+            .error {
+                span {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}

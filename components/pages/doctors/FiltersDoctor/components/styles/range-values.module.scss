@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+
+    h3 {
+        color: var(--color-text);
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 25px;
+    }
+
+    .priceFilter {
+        width: 100%;
+        display: grid;
+        gap: 10px 10px;
+        grid-template-columns: repeat(2, calc(50% - 4px));
+
+        .item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            p {
+                color: #101828;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 20px;
+                letter-spacing: 0px;
+            }
+
+            &.active {
+                background: var(--error-600);
+                p {
+                    color: var(--gray-300);
+                }
+            }
+
+            border-radius: 10px;
+            background: var(--background);
+            box-shadow: 0px 2px 7.5px 0px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    &[data-mobile="true"]{
+        gap: 8px;
+    }
+}

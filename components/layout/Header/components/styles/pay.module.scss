@@ -1,0 +1,36 @@
+.container {
+    width: fit-content;
+    height: 53px;
+    padding: 14px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    border-radius: 10px;
+    border: 2px solid var(--color-text);
+    cursor: pointer;
+
+    &>p {
+        color: var(--color-text);
+        text-align: right;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        & > b {
+            font-style: normal;
+            font-weight: 500;
+        }
+    }
+
+    @media screen and (max-width: 1050px) {
+        height: 36px;
+        padding: 5px;
+        &>p{
+            font-size: 14px;
+            &>b{
+                display: none;
+            }
+        }
+    }
+}

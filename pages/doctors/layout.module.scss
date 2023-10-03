@@ -1,0 +1,23 @@
+.wrapper {
+    position: relative;
+    padding: 64px 64px 64px 0;
+    display: flex;
+    flex-direction: row;
+    gap: 64px;
+    height: calc(100% - 98px);
+    z-index: 2;
+}
+
+.wrapperMobile {
+    width: 100%;
+    height: calc(100% - 68px);
+    position: relative;
+    padding: 20px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    & > ul {
+    }
+}

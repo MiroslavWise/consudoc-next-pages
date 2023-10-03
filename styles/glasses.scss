@@ -1,0 +1,72 @@
+@mixin glasses {
+    position: absolute;
+    width: 431px;
+    height: 431px;
+    border-radius: 300px;
+    filter: blur(50px);
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease-in-out;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    animation: scale 7s ease-in-out infinite;
+}
+
+:root {
+    --background-circle-1: rgba(243, 145, 114, 0.22);
+    --background-circle-2: rgba(100, 220, 246, 0.22);
+    --background-circle-3: rgba(148, 249, 48, 0.16);
+    --background-circle-4: rgba(135, 92, 255, 0.14);
+}
+
+[data-theme="dark"] {
+    --background-circle-1: rgba(243, 145, 114, 0.82);
+    --background-circle-2: rgba(100, 220, 246, 0.82);
+    --background-circle-3: rgba(148, 249, 48, 0.82);
+    --background-circle-4: rgba(135, 92, 255, 0.82);
+}
+
+.glass-circle-1 {
+    @include glasses();
+    background: var(--background-circle-1);
+    top: -40px;
+    left: 230px;
+}
+
+.glass-circle-2 {
+    @include glasses();
+    background: var(--background-circle-2);
+    top: calc(100% - 300px);
+    left: -30px;
+}
+
+.glass-circle-3 {
+    @include glasses();
+    background: var(--background-circle-3);
+    top: 60%;
+    left: 60%;
+}
+
+.glass-circle-4 {
+    @include glasses();
+    background: var(--background-circle-4);
+    top: 100px;
+    left: 100%;
+}
+
+@keyframes scale {
+    0% {
+        width: 431px;
+        height: 431px;
+    }
+
+    50% {
+        width: 511px;
+        height: 511px;
+    }
+
+    100% {
+        width: 431px;
+        height: 431px;
+    }
+}

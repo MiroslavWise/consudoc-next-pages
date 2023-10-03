@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+
+    &>a{
+        color: var(--color-text);
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-decoration-line: underline;
+    }
+
+    @media screen and (max-width: 1050px) {
+        &>a{
+            display: none;
+        }
+    }
+}

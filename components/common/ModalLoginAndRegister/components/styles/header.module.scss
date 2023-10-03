@@ -1,0 +1,35 @@
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    z-index: 3;
+
+    .block {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        z-index: 3;
+
+        h2 {
+            color: var(--gray-900);
+            text-align: center;
+            font-size: 30px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 38px;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            color: var(--gray-500);
+            text-align: center;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 28px;
+            letter-spacing: -0.5px;
+        }
+    }
+}

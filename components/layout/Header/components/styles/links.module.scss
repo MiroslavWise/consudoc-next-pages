@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+
+    & > a {
+        color: #a7a7a7;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-decoration-line: underline;
+        padding: 0;
+        margin: 0;
+    }
+
+    @media screen and (max-width: 1050px) {
+        & > a {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 746px) {
+    .profile {
+        display: none;
+    }
+}

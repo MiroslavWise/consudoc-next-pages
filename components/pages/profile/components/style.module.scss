@@ -1,0 +1,48 @@
+.containerLabelInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+
+    label,
+    & > p {
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    & > label {
+        font-size: 16px;
+        color: var(--color-text);
+    }
+
+    & > p {
+        font-size: 14px;
+        color: var(--gray-600);
+    }
+
+    i {
+        font-size: 14px;
+        color: var(--error-500);
+    }
+
+    &.mobile {
+        gap: 4px;
+
+        & > label {
+            font-size: 13px;
+        }
+    
+        & > p {
+            padding-left: 10px;
+            font-size: 13px;
+        }
+    
+        i {
+            padding-left: 10px;
+            font-size: 13px;
+            font-weight: 300;
+        }
+    }
+}

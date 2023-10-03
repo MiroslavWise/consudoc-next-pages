@@ -1,0 +1,219 @@
+.container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    form {
+        width: 100%;
+        height: auto;
+
+        .inputs {
+            width: 100%;
+            height: auto;
+            display: grid;
+            gap: 20px 20px;
+            grid-template-columns: repeat(4, calc(25% - 20px));
+        }
+
+        &.mobile {
+            .inputs {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    }
+
+    &.mobile {
+        .wrapperPhoto {
+            height: auto;
+            width: 100%;
+            aspect-ratio: 1/1;
+            img {
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
+                aspect-ratio: 1/1;
+            }
+            .imageUp {
+                height: 30px;
+                width: 30px;
+                right: 15px;
+                bottom: 15px;
+            }
+        }
+    }
+}
+
+.labelInput {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+
+    label {
+        color: var(--gray-800);
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    i {
+        color: var(--error-600);
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    input {
+        width: 100%;
+        padding: 14px;
+        height: 46px;
+        border-radius: 16px;
+        border: 2px solid var(--gray-600);
+        color: var(--color-text);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: -0.3px;
+        outline: 4px solid var(--gray-50);
+        transition: all 0.03s ease-in-out 0.01s;
+
+        &::placeholder {
+            color: var(--gray-600);
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+        }
+
+        &:focus {
+            border: 2px solid var(--gray-800);
+            outline: 1px solid var(--gray-700);
+        }
+
+        &:disabled {
+            color: #505050;
+            font-weight: 600;
+        }
+    }
+
+    .picker {
+        padding: 0 17px !important;
+        height: 49px;
+        background: var(--background-input) !important;
+        border-radius: 16px;
+        border: 2px solid var(--gray-500);
+        color: var(--color-text);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: -0.3px;
+        outline: 4px solid var(--gray-50);
+        transition: all 0.03s ease-in-out 0.01s;
+
+        input {
+            border: none !important;
+            outline: none !important;
+        }
+    }
+}
+
+.mobile {
+    .labelInput {
+        gap: 4px;
+        & > label {
+            color: var(--gray-900);
+            font-weight: 500;
+        }
+    }
+
+    .buttons {
+        padding: 20px 0 0;
+
+        button {
+            border-radius: 24px;
+            border: none;
+            background: var(--gradient-success);
+            span {
+                color: var(--white);
+            }
+        }
+    }
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 60px 0 0;
+
+    button {
+        border-radius: 10px;
+        border: 2px solid var(--error-600);
+        padding: 13px 40px;
+        background: var(--background-input);
+        cursor: pointer;
+
+        span {
+            color: var(--error-600);
+            text-align: center;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+        }
+    }
+}
+
+.wrapperPhoto {
+    position: relative;
+    aspect-ratio: 1/1;
+    width: 120px;
+    height: 120px;
+    border-radius: 24px;
+    border: 6px solid var(--background-input);
+    box-shadow: 0px 18px 36px 0px rgba(0, 0, 0, 0.16);
+    z-index: 1;
+
+    img {
+        height: 108px;
+        width: 108px;
+        border-radius: 18px;
+        object-fit: cover;
+    }
+    .imageUp {
+        height: 20px;
+        width: 20px;
+        border-radius: 0;
+        z-index: 1;
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+        pointer-events: none;
+        filter: invert(1);
+    }
+}
+
+.inputUploadFile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: none !important;
+    outline: none !important;
+    height: 100%;
+    width: 100%;
+    z-index: 30;
+    border-radius: 20px;
+    opacity: 0;
+    cursor: pointer;
+}

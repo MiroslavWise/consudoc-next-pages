@@ -1,0 +1,25 @@
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+
+    & > p {
+        color: var(--gray-700);
+        text-align: center;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 15px;
+        letter-spacing: -0.5px;
+    }
+
+    &.active{
+        &>p{
+            color: var(--error-800);
+            font-weight: 700;
+        }
+    }
+}

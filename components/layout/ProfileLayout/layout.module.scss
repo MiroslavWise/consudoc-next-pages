@@ -1,0 +1,16 @@
+.wrapper {
+    padding: 65px 65px 65px 0px;
+    display: flex;
+    flex-direction: row;
+    gap: 65px;
+    height: calc(100% - 98px);
+    width: 100%;
+    z-index: 2;
+}
+
+@media screen and (max-width: 746px) {
+    .wrapper {
+        padding: 20px;
+        height: calc(100% - 68px);
+    }
+}

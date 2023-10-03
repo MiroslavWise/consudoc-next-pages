@@ -1,0 +1,16 @@
+.wrapper {
+    padding: 20px 0 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, calc(25% - 8px));
+    @media screen and (max-width: 1600px) {
+        grid-template-columns: repeat(3, calc(33% - 3px));
+    }
+    @media screen and (max-width: 1380px) {
+        grid-template-columns: repeat(2, calc(50% - 5px));
+    }
+    @media screen and (max-width: 1000px) {
+        grid-template-columns: repeat(1, calc(100%));
+    }
+    gap: 10px 10px;
+}

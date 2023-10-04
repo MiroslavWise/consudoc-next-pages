@@ -51,17 +51,13 @@ export interface IDataRegister {
     password2: string
     is_doctor: boolean
     referral_code?: string
-    full_name: string
+    get_full_name: string
     profile: {
         accept_politics: boolean
-        accept_public_offer: boolean
     }
-    // language_id?: number
 }
 
 export const registerUser = async (data: IDataRegister): Promise<any> => {
-    // data.language_id = 1
-
     try {
         const response = await fetch(`${URL_API}/register/`, {
             method: "POST",

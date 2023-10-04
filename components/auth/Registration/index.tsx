@@ -52,10 +52,9 @@ const Registration = ({
             password: values.password,
             password2: values?.password_!,
             is_doctor: values.type === "doctor",
-            full_name: values.fullName,
+            get_full_name: values.fullName,
             profile: {
                 accept_politics: true,
-                accept_public_offer: true,
             },
         }
         if (values.invited) {

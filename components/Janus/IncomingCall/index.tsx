@@ -16,6 +16,7 @@ import styles from "./style.module.scss"
 
 export const IncomingCall = () => {
     const [visible, setVisible] = useState(false)
+    const { stop } = usePlaySound()
     const context = useContext(CreateJanusContext)
     const { joinAndVisible, createRoom } = context ?? {}
     const {
@@ -64,6 +65,7 @@ export const IncomingCall = () => {
     }, [wsChannel])
 
     function answer(ans: boolean) {
+        stop()
         if (ans) {
             if (joinAndVisible && createRoom) {
                 createRoom(Number(call_info?.conf_id!)).finally(() => {

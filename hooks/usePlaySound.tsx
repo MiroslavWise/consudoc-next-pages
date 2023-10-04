@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 
 const usePlaySound = () => {
     const [audiosWeWantToUnlock, setAudiosWeWantToUnlock] = useState<HTMLAudioElement[]>([])
@@ -8,7 +8,7 @@ const usePlaySound = () => {
         setAudiosWeWantToUnlock((prev) => [...prev, new Audio("../../sound/nothing.wav")])
 
         const isTouched = () => {
-            if (audiosWeWantToUnlock != null) {
+            if (audiosWeWantToUnlock.length) {
                 for (const audio of audiosWeWantToUnlock) {
                     const source = audioCtx.createMediaElementSource(audio)
                     source.connect(audioCtx.destination)
@@ -38,13 +38,13 @@ const usePlaySound = () => {
     const playSoundSwitchStatus = () => {
         const onlineStatusSound = "../../sound/new_message_tone.mp3"
         setAudiosWeWantToUnlock((prev) => [...prev, new Audio(onlineStatusSound)])
-        if (audiosWeWantToUnlock != null) {
+        if (audiosWeWantToUnlock.length) {
             for (const audio of audiosWeWantToUnlock) {
                 const source = audioCtx.createMediaElementSource(audio)
                 source.connect(audioCtx.destination)
                 audio.play()
-                // audio.pause()
-                // audio.currentTime = 0
+                audio.pause()
+                audio.currentTime = 0
             }
             setAudiosWeWantToUnlock([])
         }
@@ -54,19 +54,29 @@ const usePlaySound = () => {
     const incomingDoctorCall = () => {
         const callSound = "../../sound/zvuk-skayp-skype-call-calling-23010.wav"
         setAudiosWeWantToUnlock((prev) => [...prev, new Audio(callSound)])
-        if (audiosWeWantToUnlock != null) {
+        if (audiosWeWantToUnlock.length) {
             for (const audio of audiosWeWantToUnlock) {
                 const source = audioCtx.createMediaElementSource(audio)
                 source.connect(audioCtx.destination)
                 audio.play()
-                // audio.pause()
-                // audio.currentTime = 0
+                audio.pause()
+                audio.currentTime = 0
             }
             setAudiosWeWantToUnlock([])
         }
     }
 
-    return { playSoundSwitchStatus, incomingDoctorCall }
+    function stop() {
+        if (audiosWeWantToUnlock.length) {
+            for (const audio of audiosWeWantToUnlock) {
+                audio.pause()
+                audio.currentTime = 0
+            }
+            setAudiosWeWantToUnlock([])
+        }
+    }
+
+    return { playSoundSwitchStatus, incomingDoctorCall, stop }
 }
 
 export default usePlaySound

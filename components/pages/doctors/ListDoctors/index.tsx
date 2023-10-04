@@ -82,19 +82,19 @@ export const ListDoctors = () => {
                         разрешения вашего вопроса
                     </p>
                 )}
+                {total ? (
+                    <div className={styles.pagination}>
+                        <Pagination
+                            total={total}
+                            pageSize={10}
+                            showSizeChanger={false}
+                            current={filter.page}
+                            onChange={setPage}
+                            size="small"
+                        />
+                    </div>
+                ) : null}
             </ul>
-            {total ? (
-                <div className={styles.pagination}>
-                    <Pagination
-                        total={total}
-                        pageSize={10}
-                        showSizeChanger={false}
-                        current={filter.page}
-                        onChange={setPage}
-                        size="small"
-                    />
-                </div>
-            ) : null}
         </section>
     )
 }

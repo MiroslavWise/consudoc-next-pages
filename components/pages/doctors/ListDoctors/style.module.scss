@@ -4,11 +4,11 @@
     width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    overflow-y: auto;
-    height: calc(100% - 98px - 64px - 64px);
+    height: 100%;
 
     & > ul {
         width: 100%;
+        height: calc(100%) !important;
         padding: 10px;
         height: fit-content;
         display: flex;
@@ -16,6 +16,7 @@
         align-items: center;
         gap: 10px;
         z-index: 2;
+        overflow-y: auto;
 
         & > p {
             text-align: center;
@@ -32,7 +33,7 @@
         padding-right: 0;
 
         & > ul {
-            overflow-y: scroll;
+            height: 100%;
             padding: 0px;
 
             & > p {

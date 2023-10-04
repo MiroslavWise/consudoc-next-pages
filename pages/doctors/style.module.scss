@@ -1,22 +1,23 @@
 .wrapper {
     position: relative;
-    height: 100vh;
+    height: 100%;
     width: 100%;
 }
 
 .wrapperMobile {
     position: relative;
     width: 100%;
+    height: 100%;
     z-index: 2;
 
     & > section {
         display: flex;
         flex-direction: column;
-        height: calc(100vh - 68px - 50px - 68px - 60px);
-        overflow-y: scroll;
+        height: calc(100% - 68px - 52px);
         gap: 10px;
 
         & > ul {
+            overflow-y: auto;
             height: 100%;
         }
     }

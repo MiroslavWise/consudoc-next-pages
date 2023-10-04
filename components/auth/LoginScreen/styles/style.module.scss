@@ -68,22 +68,21 @@ $main-black-color: #171321;
 
                     input {
                         width: 100%;
-                        padding: 14px;
+                        padding: 12px 14px;
                         height: 46px;
                         border-radius: 7px;
-                        border: 2px solid var(--gray-500);
                         color: var(--gary-800);
                         font-size: 14px;
                         font-style: normal;
                         font-weight: 500;
                         line-height: 20px;
                         letter-spacing: -0.3px;
-                        outline: 4px solid var(--gray-50);
+                        border: 1px solid var(--gray-300);
+                        outline: 2px solid var(--gray-100);
                         transition: all 0.03s ease-in-out 0.01s;
 
                         &:focus {
                             outline-color: var(--gray-300);
-                            border: 2px solid var(--gray-500);
                         }
 
                         &::placeholder {
@@ -238,4 +237,3 @@ $main-black-color: #171321;
         background-position: 0 0;
     }
 }
-

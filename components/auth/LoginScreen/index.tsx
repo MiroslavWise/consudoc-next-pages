@@ -11,6 +11,7 @@ import { cx } from "@/lib/cx"
 import { useAuth } from "@/store/state"
 
 import styles from "./styles/style.module.scss"
+import { Input } from "antd"
 
 interface IValuesForm {
     email: string
@@ -73,10 +74,13 @@ const LoginScreen = ({
                         </div>
                         <div className={styles.labelAndInput}>
                             <label>{t("Password")}</label>
-                            <input
-                                type="password"
-                                placeholder={t("Enter the password")!}
-                                {...register("password", { required: true })}
+                            <Input.Password
+                                value={watch("password")}
+                                {...register("password", {
+                                    required: true,
+                                })}
+                                placeholder={`${t("Enter the password")!}`}
+                                onChange={(value) => setValue("password", value.target.value!)}
                             />
                         </div>
                         <div className={styles.rememberAndForget}></div>

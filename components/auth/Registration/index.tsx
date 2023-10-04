@@ -136,7 +136,6 @@ const Registration = ({
                             {...register("password", {
                                 required: true,
                                 minLength: 5,
-                                validate: (value) => checkPasswordStrength(value),
                             })}
                             placeholder={t("Enter the password")!}
                             onChange={(value) => setValue("password", value.target.value!)}
@@ -145,10 +144,9 @@ const Registration = ({
                     <section>
                         <Input.Password
                             value={watch("password_")}
-                            {...register("password", {
+                            {...register("password_", {
                                 required: true,
                                 minLength: 5,
-                                validate: (value) => checkPasswordStrength(value),
                             })}
                             placeholder={`${t("Enter the password")!} (повторно)`}
                             onChange={(value) => setValue("password_", value.target.value!)}

@@ -512,7 +512,7 @@ export const ContextJanusVideoRoom: TProps = ({ children }) => {
 
     function joinAndVisible(idRoom: number) {
         console.log("---joinAndVisible idRoom: ", idRoom)
-        setIdRoom(Number(idRoom))
+        setIdRoom(Number(idRoom!))
         joinInVideoRoom(Number(idRoom)).finally(() => {
             requestAnimationFrame(() => {
                 publishOwnFeed({ useAudio: true, useVideo: true })

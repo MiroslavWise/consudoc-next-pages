@@ -36,37 +36,37 @@ const usePlaySound = () => {
     }, [])
 
     const playSoundSwitchStatus = () => {
-        const onlineStatusSound = "../../sound/new_message_tone.mp3"
+        // const onlineStatusSound = "../../sound/new_message_tone.mp3"
 
-        audiosWeWantToUnlock.current?.push(new Audio(onlineStatusSound))
+        // audiosWeWantToUnlock.current?.push(new Audio(onlineStatusSound))
 
-        if (audiosWeWantToUnlock != null) {
-            for (const audio of audiosWeWantToUnlock.current) {
-                const source = audioCtx.createMediaElementSource(audio)
-                source.connect(audioCtx.destination)
-                audio.play()
-                // audio.pause()
-                // audio.currentTime = 0
-            }
-            audiosWeWantToUnlock.current = []
-        }
-        console.log("Sound 111111111111")
+        // if (audiosWeWantToUnlock != null) {
+        //     for (const audio of audiosWeWantToUnlock.current) {
+        //         const source = audioCtx.createMediaElementSource(audio)
+        //         source.connect(audioCtx.destination)
+        //         audio.play()
+        //         // audio.pause()
+        //         // audio.currentTime = 0
+        //     }
+        //     audiosWeWantToUnlock.current = []
+        // }
+        // console.log("Sound 111111111111")
     }
 
     const incomingDoctorCall = () => {
-        const callSound = "../../sound/zvuk-skayp-skype-call-calling-23010.wav"
-        audiosWeWantToUnlock.current?.push(new Audio(callSound))
+        // const callSound = "../../sound/zvuk-skayp-skype-call-calling-23010.wav"
+        // audiosWeWantToUnlock.current?.push(new Audio(callSound))
 
-        if (audiosWeWantToUnlock != null) {
-            for (const audio of audiosWeWantToUnlock.current) {
-                const source = audioCtx.createMediaElementSource(audio)
-                source.connect(audioCtx.destination)
-                audio.play()
-                // audio.pause()
-                // audio.currentTime = 0
-            }
-            audiosWeWantToUnlock.current = []
-        }
+        // if (audiosWeWantToUnlock != null) {
+        //     for (const audio of audiosWeWantToUnlock.current) {
+        //         const source = audioCtx.createMediaElementSource(audio)
+        //         source.connect(audioCtx.destination)
+        //         audio.play()
+        //         // audio.pause()
+        //         // audio.currentTime = 0
+        //     }
+        //     audiosWeWantToUnlock.current = []
+        // }
     }
 
     return { playSoundSwitchStatus, incomingDoctorCall }

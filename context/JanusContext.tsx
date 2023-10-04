@@ -9,6 +9,7 @@ import {
     useState,
     useMemo,
     useRef,
+    useInsertionEffect,
 } from "react"
 const { v4: uuidv4 } = require("uuid")
 
@@ -41,7 +42,6 @@ type TProps = FC<{ children: ReactNode }>
 
 export const CreateJanusContext = createContext<IJanus>(undefined)
 
-var videocall: any = null
 var janus: any = null
 var jsep: any
 var trackId: any = null
@@ -67,9 +67,6 @@ var doSimulcast =
 var acodec = getQueryStringValue("acodec") !== "" ? getQueryStringValue("acodec") : null
 var vcodec = getQueryStringValue("vcodec") !== "" ? getQueryStringValue("vcodec") : null
 var doDtx = getQueryStringValue("dtx") === "yes" || getQueryStringValue("dtx") === "true"
-var subscriber_mode =
-    getQueryStringValue("subscriber-mode") === "yes" ||
-    getQueryStringValue("subscriber-mode") === "true"
 var use_msid = getQueryStringValue("msid") === "yes" || getQueryStringValue("msid") === "true"
 var remoteFeed: any
 
@@ -101,8 +98,11 @@ export const ContextJanusVideoRoom: TProps = ({ children }) => {
         uuidRoom,
     } = usePropsCallingJanus()
 
-    useEffect(() => {
+    useInsertionEffect(() => {
         setDoSvc(getQueryStringValue("svc"))
+    }, [])
+
+    useEffect(() => {
         setTimeout(() => {
             if (call_info?.uuid) {
                 apiToConfInfo(call_info.uuid).then((response) => {
@@ -122,7 +122,7 @@ export const ContextJanusVideoRoom: TProps = ({ children }) => {
             } else {
                 deleteAll()
             }
-        }, 1000)
+        }, 1600)
     }, [])
 
     useEffect(() => {
@@ -183,7 +183,7 @@ export const ContextJanusVideoRoom: TProps = ({ children }) => {
 
     useEffect(() => {
         Janus.init({
-            debug: false,
+            debug: true,
             callback: function () {
                 janus = new Janus({
                     server: process.env.NEXT_PUBLIC_URL_WEBSOCKET_JANUS,
@@ -193,7 +193,6 @@ export const ContextJanusVideoRoom: TProps = ({ children }) => {
                             opaqueId: uuid,
                             success: function (pluginHandle: any) {
                                 sfutest = pluginHandle
-                                videocall = pluginHandle
                                 setIsJanus(true)
                             },
                             error: function (error: any) {
@@ -552,7 +551,7 @@ export const ContextJanusVideoRoom: TProps = ({ children }) => {
                 }
                 let subscribe = {
                     request: "join",
-                    room: idRoom,
+                    room: Number(idRoom),
                     ptype: "subscriber",
                     streams: subscription,
                     use_msid: use_msid,

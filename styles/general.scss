@@ -11,13 +11,14 @@ body {
     position: relative;
     height: 100vh;
     width: 100%;
-    overflow: hidden;
     scrollbar-color: #6969dd #e0e0e0;
     scrollbar-width: thin;
+    overflow: hidden;
 }
 
 #__next {
     & > .main-div {
+        overflow: hidden;
         width: 100%;
         height: 100%;
         & > header {
@@ -101,7 +102,7 @@ p {
         padding-left: 10px;
         border-left: 2px solid var(--primary-300);
     }
-    &[data-left-dabble]{
+    &[data-left-dabble] {
         padding-left: 15px;
         border-left: 4px solid var(--primary-300);
     }

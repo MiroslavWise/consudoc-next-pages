@@ -39,6 +39,6 @@ export const editSpecialization = async (id: string | number, data: IDataReplace
     return requestPOST(`doctor/spec/${id}/edit/`, data)
 }
 
-export const getSpecializationsAllList = async () => {
-    return requestGET<any[]>("specialization/")
+export const getSpecializationsAllList = async (values?: Record<string, any>) => {
+    return requestGET<any[]>("specialization/", values)
 }

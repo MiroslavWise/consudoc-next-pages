@@ -19,6 +19,8 @@ const LoginScreen = dynamic(() => import("../LoginScreen"), { ssr: false })
 const MobileMain = dynamic(() => import("./components/MobileMain"), { ssr: false })
 
 import styles from "./style.module.scss"
+import { SevenReasons } from "./components/SevenReasons"
+import { Footer } from "@/components/layout/Footer"
 
 export const Main = () => {
     const SearchParams = useSearchParams()
@@ -49,6 +51,7 @@ export const Main = () => {
                             <FirstScreen />
                             <TwoScreen />
                             <DoctorScreen />
+                            <SevenReasons />
                         </>
                     ) : null}
                 </>
@@ -62,6 +65,7 @@ export const Main = () => {
                 type={isVisibleType.type}
                 set={setIsVisibleType}
             />
+            <Footer />
         </div>
     )
 }

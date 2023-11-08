@@ -1,8 +1,9 @@
+import { Rate } from "antd"
+import Image from "next/image"
+
 import type { TItemDoctor } from "./types/types"
 
 import styles from "./styles/doctor-screen.module.scss"
-import Image from "next/image"
-import { Rate } from "antd"
 
 export const ItemDoctor: TItemDoctor = ({ profile, spec_rating }) => {
     const { full_name, avatar_url } = profile ?? {}

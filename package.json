@@ -1,45 +1,44 @@
 {
-  "name": "consudoc-next-pages",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev -p 2200",
-    "dev-sup": "next dev -p 2201",
-    "build": "next build",
-    "start": "next start -p 2200",
-    "prod": "next build && next start -p 2200",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@types/string": "^0.0.32",
-    "antd": "^5.9.4",
-    "axios": "^1.5.1",
-    "dayjs": "^1.11.10",
-    "framer-motion": "^10.16.4",
-    "i18next": "^23.5.1",
-    "i18next-browser-languagedetector": "^7.1.0",
-    "jsonwebtoken": "^9.0.2",
-    "next": "13.5.4",
-    "next-i18next": "^14.0.3",
-    "react": "^18",
-    "react-device-detect": "^2.2.3",
-    "react-dom": "^18",
-    "react-hook-form": "^7.47.0",
-    "react-i18next": "^13.2.2",
-    "react-query": "^3.39.3",
-    "react-swipeable": "^7.0.1",
-    "react-toastify": "^9.1.3",
-    "sass": "^1.68.0",
-    "uuid": "^9.0.1",
-    "webrtc-adapter": "^8.2.3",
-    "zustand": "^4.4.2"
-  },
-  "devDependencies": {
-    "@types/jsonwebtoken": "^9.0.3",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "prop-types": "^15.8.1",
-    "typescript": "5.1.6"
-  }
+    "name": "consudoc-next-pages",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev -p 2200",
+        "dev-sup": "next dev -p 2201",
+        "build": "next build",
+        "start": "next start -p 2200",
+        "prod": "next build && next start -p 2200",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@types/string": "^0.0.32",
+        "antd": "^5.9.4",
+        "axios": "^1.5.1",
+        "dayjs": "^1.11.10",
+        "framer-motion": "^10.16.4",
+        "i18next": "^23.5.1",
+        "i18next-browser-languagedetector": "^7.1.0",
+        "jsonwebtoken": "^9.0.2",
+        "next": "13.5.4",
+        "react": "^18",
+        "react-device-detect": "^2.2.3",
+        "react-dom": "^18",
+        "react-hook-form": "^7.47.0",
+        "react-i18next": "^13.2.2",
+        "react-query": "^3.39.3",
+        "react-swipeable": "^7.0.1",
+        "react-toastify": "^9.1.3",
+        "sass": "^1.68.0",
+        "uuid": "^9.0.1",
+        "webrtc-adapter": "^8.2.3",
+        "zustand": "^4.4.2"
+    },
+    "devDependencies": {
+        "@types/jsonwebtoken": "^9.0.3",
+        "@types/node": "^20",
+        "@types/react": "^18",
+        "@types/react-dom": "^18",
+        "prop-types": "^15.8.1",
+        "typescript": "5.1.6"
+    }
 }

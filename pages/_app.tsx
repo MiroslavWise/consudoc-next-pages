@@ -9,6 +9,7 @@ import "@/styles/init.scss"
 import "react-toastify/dist/ReactToastify.css"
 import "@/context/i18n"
 import Head from "next/head"
+import { Footer } from "@/components/layout/Footer"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -18,7 +19,6 @@ export default function App({ Component, pageProps }: AppProps) {
             <Head>
                 <title>Consudoc</title>
                 <meta name="description" content="Медецинское консультирование" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta
                     name="viewport"
                     content="initial-scale=1.0, user-scalable=no, maximum-scale=1"
@@ -27,10 +27,8 @@ export default function App({ Component, pageProps }: AppProps) {
             <div className={cx(inter.className, "main-div")}>
                 <GeneralProvider>
                     <Component {...pageProps} />
+                    {/* <Footer /> */}
                 </GeneralProvider>
-                {[1, 2, 3, 4].map((item) => (
-                    <span className={`glass-circle-${item}`} key={`glass-circle-${item}`} />
-                ))}
             </div>
         </>
     )

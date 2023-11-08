@@ -1,6 +1,5 @@
 import { type ReactNode } from "react"
 
-import { Header } from "@/components/layout/Header"
 import { Authorization } from "@/context/Authorization"
 import { LoadDataPerson } from "@/context/LoadDataPerson"
 import { ProviderWebSocket } from "@/context/useWebSocket"

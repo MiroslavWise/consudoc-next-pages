@@ -65,7 +65,7 @@ export const Main = () => {
                 type={isVisibleType.type}
                 set={setIsVisibleType}
             />
-            <Footer />
+            {!isMobile && <Footer />}
         </div>
     )
 }

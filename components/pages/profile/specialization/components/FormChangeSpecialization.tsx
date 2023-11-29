@@ -1,28 +1,23 @@
 "use client"
 
 import { Select } from "antd/lib"
-import { useEffect, useMemo } from "react"
+import { useMemo } from "react"
 import { useForm } from "react-hook-form"
 import { useQuery } from "@tanstack/react-query"
 import { useSearchParams } from "next/navigation"
 
-import type { IGetSpecializations } from "@/types/specializations"
+import type { IDataReplaceSpec, IGetSpecializations } from "@/types/specializations"
 
 import { LabelInput } from "./LabelInput"
 
 import { usePush } from "@/hooks/usePath"
-import {
-    getSpecializations,
-    getSpecializationsAllList,
-    editSpecialization,
-    addSpecialization,
-} from "@/services/doctors"
+import { getSpecializations, getSpecializationsAllList, editSpecialization, addSpecialization } from "@/services/doctors"
 
 import styles from "./styles/form-change.module.scss"
 import stylesInputs from "./styles/label-input.module.scss"
 
 interface IFormValues {
-    spec: string | number
+    spec: number
     university: string
     workExperience: number
     cost: number
@@ -47,10 +42,7 @@ export const FormChangeSpecialization = () => {
     const current: IGetSpecializations | null = useMemo(() => {
         if (data?.ok) {
             if (data?.res) {
-                return (
-                    data?.res?.find((item) => Number(item?.id) === Number(idSpecialization)) ||
-                    null
-                )
+                return data?.res?.find((item) => Number(item?.id) === Number(idSpecialization)) || null
             }
         }
         return null
@@ -73,46 +65,37 @@ export const FormChangeSpecialization = () => {
         },
     })
 
-    useEffect(() => {
-        if (current) {
-            console.log("current: ", current)
-        }
-    }, [current])
-
     const onSubmit = handleSubmit((values: IFormValues) => {
         const consultation_time = [
             {
                 sessions_time: "20min",
-                original_price: values?.cost,
+                original_price: values?.cost!,
             },
         ]
         if (!!current) {
-            const data = {
+            const data: IDataReplaceSpec = {
                 id: Number(idSpecialization),
                 specialization_id: values?.spec,
                 university: values.university,
                 scientific_degree: false,
                 work_experience: values.workExperience || 0,
                 consultation_time: consultation_time,
-                region_living: values?.address || "",
-                additional_info: values.additional,
+                additional_info: values?.additional,
             }
-            //@ts-ignore
             editSpecialization(Number(idSpecialization), data).then((response) => {
                 console.log("editSpecialization response: ", response)
                 handlePush("/specialization")
             })
         } else {
-            const data = {
-                specialization_id: values.spec,
+            const data: IDataReplaceSpec = {
+                id: Number(idSpecialization),
+                specialization_id: values.spec!,
                 university: values.university || "",
                 scientific_degree: false,
                 work_experience: values.workExperience || 0,
                 consultation_time: consultation_time,
-                region_living: values.address || "",
-                additional_info: values.additional,
+                additional_info: values?.additional,
             }
-            //@ts-ignore
             addSpecialization(data).then((response) => {
                 console.log("addSpecialization response :", response)
                 handlePush("/specialization")
@@ -145,11 +128,7 @@ export const FormChangeSpecialization = () => {
                     {errors.spec && <i>Ввыберите специальность!!!</i>}
                 </LabelInput>
                 <LabelInput label="Оконченное высшее образование:">
-                    <input
-                        placeholder="Введите название ВУЗа"
-                        maxLength={256}
-                        {...register("university", { required: false })}
-                    />
+                    <input placeholder="Введите название ВУЗа" maxLength={256} {...register("university", { required: false })} />
                 </LabelInput>
                 <LabelInput label="Опыт работы:">
                     <input

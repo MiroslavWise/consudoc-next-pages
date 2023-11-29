@@ -24,17 +24,16 @@ export interface IGetSpecializations {
 }
 
 export interface IDataReplaceSpec {
-    profile: {
-        status: string
-    }
-    university: string
-    scientific_degree_text: string
-    scientific_degree: boolean
-    work_experience: number | string
-    category: string
-    attachments: {
-        name: string
-        file: string
+    id?: number
+    specialization_id: number
+    university?: string
+    scientific_degree?: boolean
+    scientific_degree_text?: string
+    work_experience: number
+    category?: string
+    additional_info?: string
+    consultation_time: {
+        sessions_time: string
+        original_price: number
     }[]
-    rating: number
 }

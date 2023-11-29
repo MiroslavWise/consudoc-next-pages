@@ -10,7 +10,7 @@ export const FirstScreen = () => {
             </div>
             <div className={styles.right}>
                 <Image
-                    src="/png/start-picture.png"
+                    src="/png/start-picture.avif"
                     alt="start-picture"
                     width={1054}
                     height={951}

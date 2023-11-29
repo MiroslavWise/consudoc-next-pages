@@ -1,13 +1,14 @@
 import { useEffect } from "react"
 
 import { usePush } from "@/hooks/usePath"
-import { useProfile } from "@/store/state/useProfile"
-import { useAnimatedPreload } from "@/store/state/useAnimatedPreload"
+import { useProfile, useAnimatedPreload } from "@/store/state"
 
 export default function Home() {
-    const { isDoctor, loading } = useProfile()
     const { handlePush } = usePush()
-    const { activated, deactivated } = useAnimatedPreload()
+    const isDoctor = useProfile(({ isDoctor }) => isDoctor)
+    const loading = useProfile(({ loading }) => loading)
+    const activated = useAnimatedPreload(({ activated }) => activated)
+    const deactivated = useAnimatedPreload(({ deactivated }) => deactivated)
 
     useEffect(() => {
         if (typeof isDoctor === "undefined") {

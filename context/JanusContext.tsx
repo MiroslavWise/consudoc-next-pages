@@ -71,32 +71,34 @@ var use_msid = getQueryStringValue("msid") === "yes" || getQueryStringValue("msi
 var remoteFeed: any
 
 export const ContextJanusVideoRoom: TProps = ({ children }) => {
-    const { wsChannel } = useWeb() ?? {}
-    const { isDoctor, profile } = useProfile() ?? {}
+    const [doSvc, setDoSvc] = useState("")
     const [visible, setVisible] = useState<boolean>(false)
     const [isJanus, setIsJanus] = useState<boolean>(false)
-    const [doSvc, setDoSvc] = useState("")
-    const { deleteTime, setTime } = useCallJanus()
     const refVideoLeft = useRef<HTMLDivElement>(null)
     const refVideoRight = useRef<HTMLDivElement>(null)
-    const uuid = useMemo(() => uuidv4(), [])
     const close = useRef<boolean>(false)
     const isTimer = useRef<boolean>(false)
-    const { setIsVisible } = useFeedback()
+    const { wsChannel } = useWeb() ?? {}
+    const isDoctor = useProfile(({ isDoctor }) => isDoctor)
+    const profile = useProfile(({ profile }) => profile)
+    const deleteTime = useCallJanus(({ deleteTime }) => deleteTime)
+    const setTime = useCallJanus(({ setTime }) => setTime)
+    const setIsVisible = useFeedback(({ setIsVisible }) => setIsVisible)
 
-    const {
-        call_info,
-        doctor_info,
-        user_info,
-        setCallInfo,
-        setDoctorInfo,
-        setUserInfo,
-        idRoom: idRoomState,
-        setIdRoom,
-        setUuidRoom,
-        deleteAll,
-        uuidRoom,
-    } = usePropsCallingJanus()
+    const uuid = useMemo(() => uuidv4(), [])
+
+    const call_info = usePropsCallingJanus(({ call_info }) => call_info)
+
+    const doctor_info = usePropsCallingJanus(({ doctor_info }) => doctor_info)
+    const user_info = usePropsCallingJanus(({ user_info }) => user_info)
+    const setCallInfo = usePropsCallingJanus(({ setCallInfo }) => setCallInfo)
+    const setDoctorInfo = usePropsCallingJanus(({ setDoctorInfo }) => setDoctorInfo)
+    const setUserInfo = usePropsCallingJanus(({ setUserInfo }) => setUserInfo)
+    const idRoomState = usePropsCallingJanus(({ idRoom }) => idRoom)
+    const setIdRoom = usePropsCallingJanus(({ setIdRoom }) => setIdRoom)
+    const setUuidRoom = usePropsCallingJanus(({ setUuidRoom }) => setUuidRoom)
+    const deleteAll = usePropsCallingJanus(({ deleteAll }) => deleteAll)
+    const uuidRoom = usePropsCallingJanus(({ uuidRoom }) => uuidRoom)
 
     useInsertionEffect(() => {
         setDoSvc(getQueryStringValue("svc"))

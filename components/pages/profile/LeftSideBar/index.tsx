@@ -10,7 +10,7 @@ import { usePush } from "@/hooks/usePath"
 import styles from "./style.module.scss"
 
 export const LeftSideBar = memo(function LeftSideBar() {
-    const { profile } = useProfile()
+    const profile = useProfile(({ profile }) => profile)
     const { handlePush } = usePush()
 
     const { photo, user } = profile ?? {}

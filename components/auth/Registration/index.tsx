@@ -1,17 +1,17 @@
 "use client"
 
-import { Input } from "antd"
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
+import { Input } from "antd/lib"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSearchParams } from "next/navigation"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
 
 import type { TTypeMainScreen } from "../Main/components/types/types"
 
 import { cx } from "@/lib/cx"
 import { useAuth } from "@/store/state"
+import { checkExEmail } from "@/lib/regEx"
 import { registerUser, type IDataRegister } from "@/services/login"
-import { checkExEmail, checkPasswordStrength } from "@/lib/regEx"
 
 import styles from "./styles/style.module.scss"
 import { ISetOfferOrTerms } from "../ModalTerms/types"
@@ -27,7 +27,7 @@ const Registration = ({
     const [loading, setLoading] = useState(false)
     const SearchParams = useSearchParams()
     const invited = SearchParams.get("invited-token")
-    const { login } = useAuth()
+    const login = useAuth(({ login }) => login)
 
     const {
         register,

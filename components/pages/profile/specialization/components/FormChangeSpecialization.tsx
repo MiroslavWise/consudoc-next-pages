@@ -1,10 +1,10 @@
 "use client"
 
+import { Select } from "antd/lib"
 import { useEffect, useMemo } from "react"
-import { useQuery } from "react-query"
 import { useForm } from "react-hook-form"
+import { useQuery } from "@tanstack/react-query"
 import { useSearchParams } from "next/navigation"
-import { Select } from "antd"
 
 import type { IGetSpecializations } from "@/types/specializations"
 
@@ -33,12 +33,12 @@ interface IFormValues {
 export const FormChangeSpecialization = () => {
     const idSpecialization = useSearchParams().get("id")
     const { handlePush } = usePush()
-    const { data, refetch } = useQuery({
+    const { data } = useQuery({
         queryFn: () => getSpecializations(),
         queryKey: ["specializations"],
         refetchOnWindowFocus: false,
     })
-    const { data: specializationsAll, isLoading: loadSpecs } = useQuery({
+    const { data: specializationsAll } = useQuery({
         queryFn: () => getSpecializationsAllList(),
         queryKey: ["specializations_all"],
         refetchOnWindowFocus: false,

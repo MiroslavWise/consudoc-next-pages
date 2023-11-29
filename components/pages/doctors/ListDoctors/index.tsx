@@ -1,8 +1,8 @@
 "use client"
 
+import { Pagination } from "antd/lib"
 import { useEffect, useMemo } from "react"
-import { Pagination } from "antd"
-import { useQuery } from "react-query"
+import { useQuery } from "@tanstack/react-query"
 
 import { Item } from "./components/Item"
 import { ItemLoading } from "./components/ItemLoading"
@@ -18,7 +18,10 @@ import styles from "./style.module.scss"
 
 export const ListDoctors = () => {
     const { wsChannel } = useWeb()
-    const { filters, total, setTotal, setPage } = useFilters()
+    const filters = useFilters(({ filters }) => filters)
+    const total = useFilters(({ total }) => total)
+    const setTotal = useFilters(({ setTotal }) => setTotal)
+    const setPage = useFilters(({ setPage }) => setPage)
 
     const filter: Record<string, any> = useMemo(() => {
         return {
@@ -38,6 +41,7 @@ export const ListDoctors = () => {
             filter.price_lte,
             filter.doctor__status,
         ],
+        refetchOnMount: false,
         refetchOnWindowFocus: false,
     })
 

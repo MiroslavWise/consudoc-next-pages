@@ -1,7 +1,7 @@
 "use client"
 
+import { Rate } from "antd/lib"
 import Image from "next/image"
-import { Rate } from "antd"
 
 import type { TItemSpecialization } from "./types/types"
 
@@ -14,23 +14,17 @@ import { useOutgoingCall, useProfile } from "@/store/state"
 import styles from "./styles/item-specialization.module.scss"
 
 export const ItemSpecialization: TItemSpecialization = ({
-    additional_info,
-    attachments,
     consultation_time,
-    degree,
-    id,
     profile,
     rating,
-    scientific_degree,
-    scientific_degree_text,
     specialization,
     specialization_id,
     university,
     work_experience,
 }) => {
     const { wsChannel } = useWeb()
-    const { profile: profileMy } = useProfile()
-    const { setState } = useOutgoingCall()
+    const profileMy = useProfile(({ profile }) => profile)
+    const setState = useOutgoingCall(({ setState }) => setState)
 
     // function startEndTimer(value: boolean) {
     //     const timer = setTimeout(() => {}, 60 * 1000)

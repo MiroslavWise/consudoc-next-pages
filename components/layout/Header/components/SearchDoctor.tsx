@@ -8,7 +8,7 @@ import { usePush } from "@/hooks/usePath"
 import styles from "./styles/search-doctor.module.scss"
 
 export const SearchDoctor = () => {
-    const { isDoctor } = useProfile()
+    const isDoctor = useProfile(({ isDoctor }) => isDoctor)
     const { handlePush } = usePush()
 
     function handleDoctors() {

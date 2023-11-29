@@ -1,20 +1,18 @@
-import { useQuery } from "react-query"
+import { useQuery } from "@tanstack/react-query"
 
 import { ProfileLayout } from "@/components/layout/ProfileLayout"
+import { ItemMedicalRecord } from "@/components/pages/medical-record/Item"
 
 import { cx } from "@/lib/cx"
 import { getDoctorRemark } from "@/services/profile"
 
 import styles from "./styles.module.scss"
-import { ItemMedicalRecord } from "@/components/pages/medical-record/Item"
 
 export default function MedicalRecord() {
     const { data, isLoading } = useQuery({
         queryFn: () => getDoctorRemark(),
         queryKey: ["doctor-remark"],
     })
-
-    console.log("data: ", data)
 
     return (
         <ProfileLayout>

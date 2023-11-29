@@ -7,15 +7,14 @@ import type { TSignRegister, IValuesSubmitLogin } from "./types"
 import { Header } from "./Header"
 import { Footer } from "./Footer"
 
-import { useAuth, useVisibleSignIn } from "@/store/state"
+import { useAuth } from "@/store/state"
 
 import styles from "./styles/sign.module.scss"
 import styleInput from "./styles/style.module.scss"
 import { regExEmail } from "@/lib/regEx"
 
 export const SignIn: TSignRegister = ({}) => {
-    const { setState } = useVisibleSignIn()
-    const { login } = useAuth()
+    const login = useAuth(({ login }) => login)
 
     const {
         register,

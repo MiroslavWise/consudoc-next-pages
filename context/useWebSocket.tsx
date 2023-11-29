@@ -8,8 +8,11 @@ import {
     useEffect,
     useState,
 } from "react"
+import { toast } from "react-toastify"
+import { useQuery } from "@tanstack/react-query"
 
 import { useAuth } from "@/store/state"
+import { getProfile } from "@/services/profile"
 import { URL_SOCKET } from "@/services/general-api"
 
 export const ContextWebSocket = createContext<{
@@ -19,7 +22,24 @@ export const ContextWebSocket = createContext<{
 
 export const ProviderWebSocket: FC<{ children: ReactNode }> = ({ children }) => {
     const [webSocket, setWebSocket] = useState<WebSocket | undefined>(undefined)
-    const { token } = useAuth()
+    const token = useAuth(({ token }) => token)
+    const notify = (text: string) =>
+        toast(text, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        })
+
+    const { refetch } = useQuery({
+        queryFn: () => getProfile(),
+        queryKey: ["profile-me", token!],
+        enabled: false,
+    })
 
     function connectWebSocket() {
         if (token) {
@@ -61,6 +81,24 @@ export const ProviderWebSocket: FC<{ children: ReactNode }> = ({ children }) => 
             }
         }
     }, [token])
+
+    useEffect(() => {
+        if (webSocket) {
+            webSocket.addEventListener("message", eventMessage)
+        }
+        return () => webSocket?.removeEventListener("message", eventMessage)
+    }, [webSocket])
+
+    function eventMessage(event: any) {
+        const data = JSON.parse(event.data).data
+        if (data?.type === "billing_deposit_up" || data?.type === "billing_declined") {
+            console.log("message: ", data?.message)
+            const message = data?.message?.verb
+
+            refetch()
+            notify(message)
+        }
+    }
 
     return (
         <ContextWebSocket.Provider

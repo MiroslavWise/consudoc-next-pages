@@ -15,10 +15,10 @@ interface IReturnData<P> {
     error?: any
 }
 
-export const requestPOST = async (
+export async function requestPOST<T extends any>(
     url: string,
     body: { [key: string]: any }
-): Promise<IReturnData<any>> => {
+): Promise<IReturnData<T>> {
     const headers: HeadersInit = {
         "Content-Type": "application/json",
     }
@@ -130,7 +130,7 @@ export const requestPUT = async (
     }
 }
 
-export async function requestGET<T>(
+export async function requestGET<T extends any>(
     url: string,
     params?: Record<string | number, string | number>
 ): Promise<IReturnData<T>> {

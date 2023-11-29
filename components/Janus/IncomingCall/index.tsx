@@ -18,19 +18,18 @@ export const IncomingCall = () => {
     const [visible, setVisible] = useState(false)
     const { stop } = usePlaySound()
     const context = useContext(CreateJanusContext)
-    const { joinAndVisible, createRoom } = context ?? {}
-    const {
-        call_info,
-        doctor_info,
-        user_info,
-        setUuidRoom,
-        setCallInfo,
-        setDoctorInfo,
-        setUserInfo,
-        deleteAll,
-    } = usePropsCallingJanus()
-    const { incomingDoctorCall } = usePlaySound()
     const { wsChannel } = useWeb()
+    const { incomingDoctorCall } = usePlaySound()
+    const call_info = usePropsCallingJanus(({ call_info }) => call_info)
+    const doctor_info = usePropsCallingJanus(({ doctor_info }) => doctor_info)
+    const user_info = usePropsCallingJanus(({ user_info }) => user_info)
+    const setUuidRoom = usePropsCallingJanus(({ setUuidRoom }) => setUuidRoom)
+    const setCallInfo = usePropsCallingJanus(({ setCallInfo }) => setCallInfo)
+    const setDoctorInfo = usePropsCallingJanus(({ setDoctorInfo }) => setDoctorInfo)
+    const setUserInfo = usePropsCallingJanus(({ setUserInfo }) => setUserInfo)
+    const deleteAll = usePropsCallingJanus(({ deleteAll }) => deleteAll)
+
+    const { joinAndVisible, createRoom } = context ?? {}
 
     useEffect(() => {
         if (wsChannel) {
@@ -106,7 +105,7 @@ export const IncomingCall = () => {
 
     const urlAvatar =
         user_info?.avatar_url?.includes("default") || !user_info?.avatar_url
-            ? "/images/default.png"
+            ? "/images/default.avif"
             : replaceHttps(user_info?.avatar_url!)
 
     return (

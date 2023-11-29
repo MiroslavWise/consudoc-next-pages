@@ -1,7 +1,5 @@
-"use client"
-
 import Image from "next/image"
-import { DatePicker } from "antd"
+import { DatePicker } from "antd/lib"
 import dayjs, { type Dayjs } from "dayjs"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -34,7 +32,9 @@ interface IFormData {
 
 export function FormChange() {
     const { t } = useTranslation()
-    const { profile, loading, setProfile, user } = useProfile()
+    const profile = useProfile(({ profile }) => profile)
+    const loading = useProfile(({ loading }) => loading)
+    const setProfile = useProfile(({ setProfile }) => setProfile)
     const [file, setFile] = useState<File | null>(null)
     const [selectedImage, setSelectedImage] = useState<string | null>(null)
     const { handlePush } = usePush()
@@ -46,22 +46,21 @@ export function FormChange() {
         formState: { errors },
     } = useForm<IFormData>({
         defaultValues: {
-            name: user?.get_full_name || "",
-            email: user?.email || "",
+            name: profile?.user?.get_full_name || "",
+            email: profile?.user?.email || "",
             phone: profile?.phone || "",
             gender: null,
             date: profile?.birthday ? dayjs(profile?.birthday) : null,
         },
     })
 
-    console.log("errors: ", errors)
     const onSubmit = handleSubmit(async (values: IFormData) => {
         const dataProfile: IValueDataProfile = {}
         const dataUser: IValueDataUser = {}
         if (values?.address && values?.address !== profile?.address) {
             dataProfile.address = values.address
         }
-        if (values?.name && values?.name !== user?.get_full_name) {
+        if (values?.name && values?.name !== profile?.user?.get_full_name) {
             dataUser.get_full_name = values?.name
         }
         if (
@@ -131,7 +130,7 @@ export function FormChange() {
                     />
                 ) : (
                     <Image
-                        src="/png/default_avatar.png"
+                        src="/png/default_avatar.avif"
                         alt="avatar"
                         width={400}
                         height={400}

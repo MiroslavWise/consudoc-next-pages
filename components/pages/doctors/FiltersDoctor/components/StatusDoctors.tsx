@@ -10,7 +10,8 @@ import { BUTTONS_STATUS_ONLINE, useFilters } from "@/store/state"
 import styles from "./styles/range-values.module.scss"
 
 export const StatusDoctors = () => {
-    const { filters, setStatus } = useFilters()
+    const filters = useFilters(({ filters }) => filters)
+    const setStatus = useFilters(({ setStatus }) => setStatus)
     const { doctor__status } = filters ?? {}
 
     function onChange(value: TStatus) {

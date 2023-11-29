@@ -13,7 +13,8 @@ import { styleIsMobile } from "@/lib/styleIsMobile"
 import styles from "./styles.module.scss"
 
 export default function Profile() {
-    const { user, profile, loading } = useProfile()
+    const profile = useProfile(({ profile }) => profile)
+    const loading = useProfile(({ loading }) => loading)
     const { handlePush } = usePush()
 
     return (
@@ -45,7 +46,7 @@ export default function Profile() {
                 <div className={styles.mainInfo}>
                     {loading ? null : (
                         <>
-                            <LabelInfo label="ФИО" text={user?.get_full_name!} />
+                            <LabelInfo label="ФИО" text={profile?.user?.get_full_name!} />
                             <LabelInfo
                                 label="Дата рождения"
                                 text={
@@ -55,7 +56,7 @@ export default function Profile() {
                                 }
                             />
                             <LabelInfo label="Телефон" text={profile?.phone!} />
-                            <LabelInfo label="Email" text={user?.email!} />
+                            <LabelInfo label="Email" text={profile?.user?.email!} />
                         </>
                     )}
                 </div>

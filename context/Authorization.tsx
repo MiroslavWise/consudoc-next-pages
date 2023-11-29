@@ -10,7 +10,7 @@ import { MenuMobile } from "@/components/layout/MenuMobile"
 import { useAuth } from "@/store/state"
 
 export function Authorization({ children }: { children: ReactNode }) {
-    const { state } = useAuth()
+    const state = useAuth(({ state }) => state)
 
     const Routers: Record<AuthStateType, ReactNode> = {
         Gates: <Gates />,

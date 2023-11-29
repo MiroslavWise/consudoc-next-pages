@@ -1,5 +1,6 @@
 "use client"
 
+import { Input } from "antd/lib"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { isMobile } from "react-device-detect"
@@ -11,7 +12,6 @@ import { cx } from "@/lib/cx"
 import { useAuth } from "@/store/state"
 
 import styles from "./styles/style.module.scss"
-import { Input } from "antd"
 
 interface IValuesForm {
     email: string
@@ -24,7 +24,7 @@ const LoginScreen = ({
     setState: Dispatch<SetStateAction<TTypeMainScreen>>
 }) => {
     const { t } = useTranslation()
-    const { login } = useAuth()
+    const login = useAuth(({ login }) => login)
     const [loading, setLoading] = useState(false)
     const {
         register,
@@ -34,8 +34,6 @@ const LoginScreen = ({
         watch,
         formState: { errors },
     } = useForm<IValuesForm>()
-
-    console.log("errors: ", errors)
 
     const onSubmit = handleSubmit(async (values: IValuesForm) => {
         if (!loading) {

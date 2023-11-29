@@ -4,7 +4,7 @@ import { useProfile } from "@/store/state"
 import { LinksDoctor, LinksPatient } from "./constants"
 
 export const MenuMobile = () => {
-    const { isDoctor } = useProfile()
+    const isDoctor = useProfile(({ isDoctor }) => isDoctor)
     return (
         <footer>
             {isDoctor && LinksDoctor.map((item) => <ItemLink key={item.path} {...item} />)}

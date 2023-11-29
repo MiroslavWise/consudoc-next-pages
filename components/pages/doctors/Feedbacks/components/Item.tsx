@@ -1,10 +1,10 @@
-import { Rate } from "antd"
+import dayjs from "dayjs"
+import { Rate } from "antd/lib"
 import Image from "next/image"
 
 import { TItem } from "./types/types"
 
 import styles from "./styles/item.module.scss"
-import dayjs from "dayjs"
 
 export const Item: TItem = (props) => {
     const { author, created_at, id, rating, doctor, text } = props ?? {}

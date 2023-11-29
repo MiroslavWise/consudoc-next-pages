@@ -12,7 +12,8 @@ import styles from "./style.module.scss"
 export function AnimatedLoadPage() {
     const { pathname } = useRouter()
     const pathSearchParams = useSearchParams()
-    const { isAnimated, deactivated } = useAnimatedPreload()
+    const isAnimated = useAnimatedPreload(({ isAnimated }) => isAnimated)
+    const deactivated = useAnimatedPreload(({ deactivated }) => deactivated)
 
     useEffect(deactivated, [pathname, deactivated])
 

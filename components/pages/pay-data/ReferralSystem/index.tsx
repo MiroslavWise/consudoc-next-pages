@@ -1,11 +1,11 @@
-import { Typography } from "antd"
+import { Typography } from "antd/lib"
 
 import { useProfile } from "@/store/state"
 
 import styles from "./style.module.scss"
 
 export function ReferralSystem() {
-    const { user, profile } = useProfile()
+    const profile = useProfile(({ profile }) => profile)
 
     return (
         <div>
@@ -14,7 +14,7 @@ export function ReferralSystem() {
                     <p>Ссылка для приглашения друга:</p>
                     <Typography.Paragraph
                         copyable={{
-                            text: `${user?.get_full_name} ${
+                            text: `${profile?.user?.get_full_name} ${
                                 profile?.gender === "male"
                                     ? "пригласил Вас в сервис Spenat"
                                     : "пригласила Вас в сервис Spenat"

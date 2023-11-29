@@ -1,4 +1,4 @@
-import { Rate } from "antd"
+import { Rate } from "antd/lib"
 import Image from "next/image"
 
 import type { TItemDoctor } from "./types/types"

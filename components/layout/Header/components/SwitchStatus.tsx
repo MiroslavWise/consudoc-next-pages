@@ -10,7 +10,10 @@ import { switchStatus } from "@/services/doctors"
 import styles from "./styles/switch-status.module.scss"
 
 export const SwitchStatus = () => {
-    const { isDoctor, profile, setProfile, asyncUpdateStatus } = useProfile()
+    const profile = useProfile(({ profile }) => profile)
+    const isDoctor = useProfile(({ isDoctor }) => isDoctor)
+    const setProfile = useProfile(({ setProfile }) => setProfile)
+    const asyncUpdateStatus = useProfile(({ asyncUpdateStatus }) => asyncUpdateStatus)
     const [loading, setLoading] = useState(false)
 
     function onSwitch() {

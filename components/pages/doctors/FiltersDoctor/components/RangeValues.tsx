@@ -10,7 +10,8 @@ import { BUTTONS_PRICE_OFFER, useFilters } from "@/store/state"
 import styles from "./styles/range-values.module.scss"
 
 export const RangeValues = () => {
-    const { priceOffer, usePriceOffer } = useFilters()
+    const priceOffer = useFilters(({ priceOffer }) => priceOffer)
+    const usePriceOffer = useFilters(({ usePriceOffer }) => usePriceOffer)
 
     function onChange(value: TPriceOffer) {
         usePriceOffer(value)

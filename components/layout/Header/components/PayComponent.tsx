@@ -10,7 +10,7 @@ import styles from "./styles/pay.module.scss"
 
 export const PayComponent = () => {
     const { handlePush } = usePush()
-    const { profile } = useProfile()
+    const profile = useProfile(({ profile }) => profile)
 
     function handlePay() {
         handlePush("/pay-data/replenishment")

@@ -11,7 +11,8 @@ interface IProps {
 }
 
 export const TimerSession: FC<IProps> = ({ visible, doHangup, isDoctor }) => {
-    const { currentTime, getTimerCurrent } = useCallJanus()
+    const currentTime = useCallJanus(({ currentTime }) => currentTime)
+    const getTimerCurrent = useCallJanus(({ getTimerCurrent }) => getTimerCurrent)
 
     let minute = Math.floor(currentTime! / 60)
         .toString()

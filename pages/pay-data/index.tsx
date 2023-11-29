@@ -8,6 +8,7 @@ import {
     TLinksValuePay,
 } from "@/components/pages/pay-data/components/LinksButtons"
 import { ProfileLayout } from "@/components/layout/ProfileLayout"
+import { Replenishment } from "@/components/pages/pay-data/Replenishment"
 import { ReferralSystem } from "@/components/pages/pay-data/ReferralSystem"
 
 import stylesLayout from "./layout.module.scss"
@@ -22,7 +23,7 @@ export default function PayData() {
 
         const obj: Record<TLinksValuePay, ReactNode | null> = {
             analytics: null,
-            replenishment: null,
+            replenishment: <Replenishment />,
             "referral-system": <ReferralSystem />,
         }
 

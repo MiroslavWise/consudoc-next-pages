@@ -6,11 +6,9 @@ import { useAuth } from "@/store/state"
 import { useProfile } from "@/store/state/useProfile"
 
 export const LoadDataPerson = ({ children }: { children: ReactNode }) => {
-    const { token } = useAuth()
-    const { setProfile, reset } = useProfile((state) => ({
-        setProfile: state.setProfile,
-        reset: state.reset,
-    }))
+    const token = useAuth(({ token }) => token)
+    const setProfile = useProfile(({ setProfile }) => setProfile)
+    const reset = useProfile(({ reset }) => reset)
 
     useEffect(() => {
         if (token) setProfile()

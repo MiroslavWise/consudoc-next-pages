@@ -3,7 +3,7 @@ import { switchStatus } from "@/services/doctors"
 import { useArchive, useAuth } from "@/store/state"
 
 export const useOut = () => {
-    const { out: logOut } = useAuth()
+    const logOut = useAuth(({ out }) => out)
     const { handleReplace } = usePush()
     const { resetArchive } = useArchive()
     async function out() {

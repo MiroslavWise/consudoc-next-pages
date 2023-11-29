@@ -6,7 +6,7 @@ import { NavigateOptions } from "next/dist/shared/lib/app-router-context.shared-
 export const usePush = () => {
     const { push, replace } = useRouter()
     const pathname = usePathname()
-    const { activated } = useAnimatedPreload()
+    const activated = useAnimatedPreload(({ activated }) => activated)
 
     function handlePush(value: string, options?: NavigateOptions) {
         if (pathname !== value) {

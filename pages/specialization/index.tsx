@@ -1,7 +1,8 @@
 import { useEffect } from "react"
 import Image from "next/image"
-import { useQuery } from "react-query"
+import { useQuery } from "@tanstack/react-query"
 
+import { ProfileLayout } from "@/components/layout/ProfileLayout"
 import { ItemSpecialization } from "@/components/pages/profile/specialization/components/ItemSpecialization"
 
 import { useProfile } from "@/store/state"
@@ -9,10 +10,9 @@ import { usePush } from "@/hooks/usePath"
 import { getSpecializations } from "@/services/doctors"
 
 import styles from "./style.module.scss"
-import { ProfileLayout } from "@/components/layout/ProfileLayout"
 
 export default function Specializations() {
-    const { isDoctor } = useProfile()
+    const isDoctor = useProfile(({ isDoctor }) => isDoctor)
     const { handlePush } = usePush()
     const { data, refetch } = useQuery({
         queryFn: () => getSpecializations(),

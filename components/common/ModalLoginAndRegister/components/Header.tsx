@@ -7,7 +7,7 @@ import { useVisibleSignIn } from "@/store/state"
 import styles from "./styles/header.module.scss"
 
 export const Header = () => {
-    const { state } = useVisibleSignIn()
+    const state = useVisibleSignIn(({ state }) => state)
 
     const h2: Record<TStateSignRegister, string> = {
         sign: "Войдите в свой аккаунт",

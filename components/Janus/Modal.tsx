@@ -14,7 +14,6 @@ import { TimerSession } from "./timer-session"
 import { useProfile } from "@/store/state"
 
 import { cx } from "@/lib/cx"
-import { usePropsCallingJanus } from "@/store/state/useCallJanus"
 
 import styles from "./style.module.scss"
 
@@ -38,9 +37,8 @@ export const ModalCallingJanus: FC<IProps> = ({
 }) => {
     const [toggleAudio, setToggleAudio] = useState<boolean>(true)
     const [toggleVideo, setToggleVideo] = useState<boolean>(true)
-    const { doctor_info, user_info, call_info } = usePropsCallingJanus()
 
-    const { isDoctor } = useProfile()
+    const isDoctor = useProfile(({ isDoctor }) => isDoctor)
 
     return (
         <div className={`modal_janus ${visible && "visible_janus"}`}>

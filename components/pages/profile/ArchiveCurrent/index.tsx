@@ -1,8 +1,7 @@
 "use client"
 
 import dayjs from "dayjs"
-import { useMemo } from "react"
-import { useQuery } from "react-query"
+import { useQuery } from "@tanstack/react-query"
 import { useSearchParams } from "next/navigation"
 
 import { DividerVertical } from "@/components/common/Divider"
@@ -16,7 +15,7 @@ import Image from "next/image"
 export function ArchiveCurrent() {
     const searchParams = useSearchParams()
     const idArchive = searchParams.get("uuid")
-    const { isDoctor } = useProfile()
+    const isDoctor = useProfile(({ isDoctor }) => isDoctor)
 
     const { data, isLoading } = useQuery({
         queryFn: () => getArchive(idArchive!),

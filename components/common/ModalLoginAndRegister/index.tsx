@@ -11,8 +11,12 @@ import { useVisibleSignIn } from "@/store/state"
 import styles from "./style.module.scss"
 
 export const ModalLoginAndRegister = () => {
-    const { state, isVisibleModal, isVisibleContent, setDeactivateAnimation } =
-        useVisibleSignIn()
+    const state = useVisibleSignIn(({ state }) => state)
+    const isVisibleModal = useVisibleSignIn(({ isVisibleModal }) => isVisibleModal)
+    const isVisibleContent = useVisibleSignIn(({ isVisibleContent }) => isVisibleContent)
+    const setDeactivateAnimation = useVisibleSignIn(
+        ({ setDeactivateAnimation }) => setDeactivateAnimation
+    )
 
     const content = useMemo(() => {
         const obj = {

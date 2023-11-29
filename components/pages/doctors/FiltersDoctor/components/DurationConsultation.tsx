@@ -1,6 +1,5 @@
 "use client"
 
-
 import { FC, useId } from "react"
 import { isMobile } from "react-device-detect"
 
@@ -11,7 +10,7 @@ import styles from "./styles/duration-consultation.module.scss"
 const MINUTES = [20]
 
 export const DurationConsultation: FC = () => {
-    const { filters } = useFilters()
+    const filters = useFilters(({ filters }) => filters)
     const id = useId()
 
     function handleMinutes(value: number) {}

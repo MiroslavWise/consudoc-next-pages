@@ -8,7 +8,8 @@ import styles from "./styles/footer.module.scss"
 import Image from "next/image"
 
 export const Footer = () => {
-    const { state, setState } = useVisibleSignIn()
+    const state = useVisibleSignIn(({state}) => state)
+    const setState = useVisibleSignIn(({setState}) => setState)
 
     const p: Record<TStateSignRegister, ReactNode> = {
         sign: <p onClick={() => setState("sign")}>Нет аккаунта?</p>,

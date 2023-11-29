@@ -1,4 +1,4 @@
-import { type ReactNode } from "react"
+import { useEffect, type ReactNode } from "react"
 
 import { Authorization } from "@/context/Authorization"
 import { LoadDataPerson } from "@/context/LoadDataPerson"
@@ -13,6 +13,16 @@ interface IProps {
 }
 
 export default function GeneralProvider({ children }: IProps) {
+    useEffect(() => {
+        window.addEventListener("load", () => {
+            if ("serviceWorker" in navigator) {
+                navigator.serviceWorker.register("/service-worker.js").then((response) => {
+                    console.log("serviceWorker: ", response.scope)
+                })
+            }
+        })
+    }, [])
+
     return (
         <ReactQueryProvider>
             <Authorization>

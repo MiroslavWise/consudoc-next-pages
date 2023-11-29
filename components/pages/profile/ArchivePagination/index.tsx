@@ -1,11 +1,13 @@
 "use client"
 
-import { Pagination } from "antd"
+import { Pagination } from "antd/lib"
 
 import { useArchive } from "@/store/state"
 
 export function ArchivePagination() {
-    const { page, setPage, total } = useArchive()
+    const page = useArchive(({ page }) => page)
+    const setPage = useArchive(({ setPage }) => setPage)
+    const total = useArchive(({ total }) => total)
 
     return (
         <Pagination

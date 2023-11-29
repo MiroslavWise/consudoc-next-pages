@@ -11,8 +11,10 @@ import { useOutgoingCall, useProfile } from "@/store/state"
 import styles from "./style.module.scss"
 
 export const OutgoingCall = () => {
-    const { isDoctor, profile } = useProfile()
-    const { state, setState } = useOutgoingCall()
+    const isDoctor = useProfile(({ isDoctor }) => isDoctor)
+    const profile = useProfile(({ profile }) => profile)
+    const state = useOutgoingCall(({ state }) => state)
+    const setState = useOutgoingCall(({ setState }) => setState)
     const { wsChannel } = useWeb()
 
     async function onCancelCall(): Promise<void> {

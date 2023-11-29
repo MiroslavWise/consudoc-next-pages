@@ -5,8 +5,8 @@ import { type Dispatch, type SetStateAction } from "react"
 
 import type { TTypeMainScreen } from "@/components/auth/Main/components/types/types"
 
-import { useAuth, useProfile } from "@/store/state"
 import { usePush } from "@/hooks/usePath"
+import { useAuth, useProfile } from "@/store/state"
 
 import styles from "./styles/logo.module.scss"
 
@@ -15,9 +15,9 @@ export const Logo = ({
 }: {
     setState?: Dispatch<SetStateAction<TTypeMainScreen>>
 }) => {
-    const { state } = useAuth()
+    const state = useAuth(({ state }) => state)
     const { handlePush } = usePush()
-    const { isDoctor } = useProfile()
+    const isDoctor = useProfile(({ isDoctor }) => isDoctor)
 
     function handleMain() {
         if (state === "SignIn") {

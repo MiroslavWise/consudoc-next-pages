@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import Image from "next/image"
-import { useQuery } from "react-query"
 import { useRouter } from "next/router"
+import { useQuery } from "@tanstack/react-query"
 
 import type { TStatus } from "@/store/types/useFilters"
 

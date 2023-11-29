@@ -2,7 +2,7 @@
 
 import dayjs from "dayjs"
 import { useEffect } from "react"
-import { useQuery } from "react-query"
+import { useQuery } from "@tanstack/react-query"
 
 import { DividerVertical } from "@/components/common/Divider"
 
@@ -13,10 +13,12 @@ import { useArchive, useProfile } from "@/store/state"
 import styles from "./styles/list.module.scss"
 
 export function ArchiveList() {
-    const { isDoctor } = useProfile()
     const { handlePush } = usePush()
 
-    const { page, setTotal } = useArchive()
+    const page = useArchive(({ page }) => page)
+    const setTotal = useArchive(({ setTotal }) => setTotal)
+    const isDoctor = useProfile(({ isDoctor }) => isDoctor)
+
     const { data, isLoading } = useQuery({
         queryFn: () => getArchives({ page: page }),
         queryKey: ["archive", page],

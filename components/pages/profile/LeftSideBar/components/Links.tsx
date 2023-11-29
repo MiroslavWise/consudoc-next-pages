@@ -9,7 +9,7 @@ import { LINKS_PROFILE } from "./constants/links"
 import styles from "./styles/style.module.scss"
 
 export function Links() {
-    const { isDoctor } = useProfile()
+    const isDoctor = useProfile(({ isDoctor }) => isDoctor)
     const { handlePush } = usePush()
     const { pathname } = useRouter()
 

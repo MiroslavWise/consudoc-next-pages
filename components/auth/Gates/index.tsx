@@ -5,7 +5,7 @@ import { useAuth } from "@/store/state"
 import styles from "./style.module.scss"
 
 export const Gates = () => {
-    const { refresh } = useAuth()
+    const refresh = useAuth(({refresh}) => refresh)
 
     useEffect(() => {
         if (refresh) {

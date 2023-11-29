@@ -1,6 +1,6 @@
 "use client"
 
-import { Rate } from "antd"
+import { Rate } from "antd/lib"
 import { useState } from "react"
 import Image from "next/image"
 
@@ -15,11 +15,16 @@ import { setDoctorFeedback, setDoctorReviewToPatient } from "@/services/apiCallJ
 import styles from "./style.module.scss"
 
 export const Feedback = () => {
-    const { isVisible, setIsVisible } = useFeedback()
     const [text, setText] = useState("")
     const [rate, setRate] = useState<number>(undefined!)
-    const { isDoctor, profile } = useProfile()
-    const { doctor_info, user_info, deleteAll, idRoom } = usePropsCallingJanus()
+    const isDoctor = useProfile(({ isDoctor }) => isDoctor)
+    const profile = useProfile(({ profile }) => profile)
+    const isVisible = useFeedback(({ isVisible }) => isVisible)
+    const setIsVisible = useFeedback(({ setIsVisible }) => setIsVisible)
+    const doctor_info = usePropsCallingJanus(({ doctor_info }) => doctor_info)
+    const user_info = usePropsCallingJanus(({ user_info }) => user_info)
+    const deleteAll = usePropsCallingJanus(({ deleteAll }) => deleteAll)
+    const idRoom = usePropsCallingJanus(({ idRoom }) => idRoom)
 
     function handleCancel() {
         deleteAll()
@@ -60,11 +65,11 @@ export const Feedback = () => {
 
     const urlAvatar =
         doctor_info?.avatar_url?.includes("default") || !doctor_info?.avatar_url
-            ? "/images/default.png"
+            ? "/images/default.avif"
             : replaceHttps(doctor_info?.avatar_url!)
     const urlPatient =
         user_info?.avatar_url?.includes("default") || !user_info?.avatar_url
-            ? "/images/default.png"
+            ? "/images/default.avif"
             : replaceHttps(user_info?.avatar_url!)
 
     return (

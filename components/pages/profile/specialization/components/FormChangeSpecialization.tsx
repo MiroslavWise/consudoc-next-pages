@@ -80,10 +80,9 @@ export const FormChangeSpecialization = () => {
                 scientific_degree: false,
                 work_experience: values.workExperience || 0,
                 consultation_time: consultation_time,
-                additional_info: values?.additional,
+                // additional_info: values?.additional,
             }
             editSpecialization(Number(idSpecialization), data).then((response) => {
-                console.log("editSpecialization response: ", response)
                 handlePush("/specialization")
             })
         } else {
@@ -94,10 +93,9 @@ export const FormChangeSpecialization = () => {
                 scientific_degree: false,
                 work_experience: values.workExperience || 0,
                 consultation_time: consultation_time,
-                additional_info: values?.additional,
+                // additional_info: values?.additional,
             }
             addSpecialization(data).then((response) => {
-                console.log("addSpecialization response :", response)
                 handlePush("/specialization")
             })
         }

@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from "react"
 
+import { ModalReferral } from "@/templates"
 import { Authorization } from "@/context/Authorization"
 import { LoadDataPerson } from "@/context/LoadDataPerson"
 import { ProviderWebSocket } from "@/context/useWebSocket"
@@ -33,6 +34,7 @@ export default function GeneralProvider({ children }: IProps) {
                         <Feedback />
                         <OutgoingCall />
                         <AnimatedLoadPage />
+                        <ModalReferral />
                     </ContextJanusVideoRoom>
                 </ProviderWebSocket>
             </Authorization>

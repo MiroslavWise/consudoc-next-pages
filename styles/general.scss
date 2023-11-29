@@ -163,6 +163,8 @@ div {
     --black: #171321;
     --stroke: rgb(195, 195, 195);
 
+    --transition: 0.3s ease-in-out;
+
     //Color Gary
     --gray-900: #101828;
     --gray-800: #1d2939;
@@ -227,11 +229,7 @@ div {
     --white: #ffffff;
 
     --gradient-success: linear-gradient(180deg, #32d583 0%, #054f31 100%);
-    --gradient-error: linear-gradient(
-        180deg,
-        rgba(249, 112, 102, 0.4) 0%,
-        rgba(122, 39, 26, 0.4) 100%
-    );
+    --gradient-error: linear-gradient(180deg, rgba(249, 112, 102, 0.4) 0%, rgba(122, 39, 26, 0.4) 100%);
 }
 
 [data-theme="dark"] {

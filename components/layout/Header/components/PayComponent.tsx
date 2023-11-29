@@ -13,7 +13,7 @@ export const PayComponent = () => {
     const profile = useProfile(({ profile }) => profile)
 
     function handlePay() {
-        handlePush("/pay-data/replenishment")
+        handlePush("/pay-data?current=replenishment")
     }
 
     return (

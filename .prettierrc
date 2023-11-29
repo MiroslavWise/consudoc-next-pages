@@ -2,7 +2,7 @@
     "tabWidth": 4,
     "useTabs": false,
     "semi": false,
-    "printWidth": 95,
+    "printWidth": 135,
     "importOrder": ["^type", "^default"],
     "bracketSameLine": false,
     "jsxBracketSameLine": false

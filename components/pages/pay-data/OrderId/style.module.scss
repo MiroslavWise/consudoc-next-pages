@@ -2,5 +2,47 @@
     padding: 16px;
 
     & > section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        border-radius: 7px !important;
+        overflow: hidden;
+        border: 1px solid var(--gray-300);
+        padding: 1rem;
+        width: 100%;
+        box-shadow: none !important;
+
+        & > p {
+            color: var(--gray-500);
+            text-align: justify;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+        }
+
+        &[data-status="new"] {
+            box-shadow: rgba(11, 11, 151, 0.35) 0px 5px 15px;
+        }
+
+        &[data-status="charged"] {
+            & > p {
+                color: var(--success-600);
+            }
+            box-shadow: var(--success-400) 0px 5px 15px;
+        }
+        &[data-status="validation"] {
+            & > p {
+                color: var(--warning-600);
+            }
+            box-shadow: var(--warning-400) 0px 5px 15px;
+        }
+        &[data-status="error"],
+        &[data-status="declined"] {
+            & > p {
+                color: var(--error-600);
+            }
+            box-shadow: var(var(--error-400)) 0px 5px 15px;
+        }
     }
 }

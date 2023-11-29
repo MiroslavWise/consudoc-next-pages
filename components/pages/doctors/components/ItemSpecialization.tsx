@@ -9,9 +9,12 @@ import { cx } from "@/lib/cx"
 import { platform } from "@/lib/platform"
 import { workExperience } from "@/lib/work-exp"
 import { useWeb } from "@/context/useWebSocket"
-import { useOutgoingCall, useProfile } from "@/store/state"
+import { useAuth, useOutgoingCall, useProfile } from "@/store/state"
 
 import styles from "./styles/item-specialization.module.scss"
+import { useQuery } from "@tanstack/react-query"
+import { getProfile } from "@/services/profile"
+import { usePush } from "@/hooks/usePath"
 
 export const ItemSpecialization: TItemSpecialization = ({
     consultation_time,
@@ -23,12 +26,16 @@ export const ItemSpecialization: TItemSpecialization = ({
     work_experience,
 }) => {
     const { wsChannel } = useWeb()
-    const profileMy = useProfile(({ profile }) => profile)
+    const { handlePush } = usePush()
+    const token = useAuth(({ token }) => token)
     const setState = useOutgoingCall(({ setState }) => setState)
 
-    // function startEndTimer(value: boolean) {
-    //     const timer = setTimeout(() => {}, 60 * 1000)
-    // }
+    const { data, isLoading } = useQuery({
+        queryFn: () => getProfile(),
+        queryKey: ["profile", token],
+        enabled: !!token,
+        refetchOnReconnect: true,
+    })
 
     function onCall() {
         if (wsChannel) {
@@ -36,13 +43,11 @@ export const ItemSpecialization: TItemSpecialization = ({
                 JSON.stringify({
                     data: {
                         type: "user_call",
-                        time_id: consultation_time?.find(
-                            (item) => item.sessions_time === "20min"
-                        )?.id,
+                        time_id: consultation_time?.find((item) => item.sessions_time === "20min")?.id,
                         spec_id: specialization_id,
                         device_type: platform,
                         doctor_profile_id: profile?.id,
-                        profile_id: profileMy?.profile_id,
+                        profile_id: data?.res?.profile?.profile_id,
                         note_id: false,
                     },
                 })
@@ -52,17 +57,30 @@ export const ItemSpecialization: TItemSpecialization = ({
 
     function handleCall() {
         if (profile?.status === "online") {
-            onCall()
-            setState({
-                visible: true,
-                name: profile?.full_name!,
-                avatar: profile?.avatar_url!,
-                session: consultation_time
-                    ?.find((item) => item.sessions_time === "20min")
-                    ?.sessions_time?.replace("min", " мин")!,
-                specialization: specialization?.name!,
-                profileIdDoctor: profile?.id,
-            })
+            if (
+                Number(data?.res?.profile?.balance?.current_balance!) >=
+                Number(consultation_time?.find((item) => item.sessions_time === "20min")?.price)
+            ) {
+                onCall()
+                setState({
+                    visible: true,
+                    name: profile?.full_name!,
+                    avatar: profile?.avatar_url!,
+                    session: consultation_time?.find((item) => item.sessions_time === "20min")?.sessions_time?.replace("min", " мин")!,
+                    specialization: specialization?.name!,
+                    profileIdDoctor: profile?.id,
+                })
+            } else if (
+                Number(data?.res?.profile?.balance?.current_balance!) <=
+                Number(consultation_time?.find((item) => item.sessions_time === "20min")?.price)
+            ) {
+                handlePush(
+                    `/pay-data?current=replenishment&amount-min=${
+                        +Number(consultation_time?.find((item) => item.sessions_time === "20min")?.price)?.toFixed(0) -
+                        +Number(data?.res?.profile?.balance?.current_balance!)?.toFixed(0)
+                    }`
+                )
+            }
         }
     }
 
@@ -72,24 +90,23 @@ export const ItemSpecialization: TItemSpecialization = ({
                 <div className={styles.title}>
                     <h4>{specialization?.name}</h4>
                 </div>
-                <div
-                    className={cx(
-                        styles.videoCall,
-                        profile?.status === "online" && styles.online
-                    )}
-                    onClick={handleCall}
-                >
+                <div className={cx(styles.videoCall, styles[profile?.status])} onClick={handleCall}>
                     <Image
-                        src={
-                            profile?.status === "online"
-                                ? "/svg/video.svg"
-                                : "/svg/video-red.svg"
-                        }
+                        src={profile?.status === "online" ? "/svg/video.svg" : "/svg/video-red.svg"}
                         alt="video"
                         width={22}
                         height={14}
                     />
-                    <a>видеозвонок</a>
+                    <a>
+                        {profile?.status === "online" &&
+                        Number(data?.res?.profile?.balance?.current_balance!) >=
+                            Number(consultation_time?.find((item) => item.sessions_time === "20min")?.price)
+                            ? "видеозвонок"
+                            : Number(data?.res?.profile?.balance?.current_balance!) <=
+                              Number(consultation_time?.find((item) => item.sessions_time === "20min")?.price)
+                            ? "пополнить"
+                            : null}
+                    </a>
                 </div>
             </header>
             <section>
@@ -113,8 +130,7 @@ export const ItemSpecialization: TItemSpecialization = ({
                     Время и цена:{" "}
                     {consultation_time?.map((item) => (
                         <span key={`${item.id}-${item.price}-time-price`}>
-                            {item.sessions_time?.replace("min", " мин")} /{" "}
-                            <b>{item?.price}₸</b>
+                            {item.sessions_time?.replace("min", " мин")} / <b>{item?.price}₸</b>
                         </span>
                     ))}
                 </p>

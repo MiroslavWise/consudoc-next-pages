@@ -97,6 +97,10 @@ i {
     line-height: 120%;
 }
 
+a {
+    text-decoration: none;
+}
+
 p {
     &[data-left-border="true"] {
         padding-left: 10px;

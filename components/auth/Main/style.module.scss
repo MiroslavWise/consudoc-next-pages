@@ -4,9 +4,6 @@
     display: flex;
     overflow: hidden;
     flex-direction: column;
+    justify-content: space-between;
     overflow-y: auto;
-
-    @media screen and (max-width: 746px) {
-        justify-content: center;
-    }
 }

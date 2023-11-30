@@ -1,12 +1,11 @@
 "use client"
 
+import Link from "next/link"
+import { useState } from "react"
 import { Input } from "antd/lib"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { isMobile } from "react-device-detect"
-import { useState, type Dispatch, type SetStateAction } from "react"
-
-import type { TTypeMainScreen } from "../Main/components/types/types"
 
 import { cx } from "@/lib/cx"
 import { useAuth } from "@/store/state"
@@ -18,11 +17,7 @@ interface IValuesForm {
     password: string
 }
 
-const LoginScreen = ({
-    setState,
-}: {
-    setState: Dispatch<SetStateAction<TTypeMainScreen>>
-}) => {
+const LoginScreen = () => {
     const { t } = useTranslation()
     const login = useAuth(({ login }) => login)
     const [loading, setLoading] = useState(false)
@@ -82,16 +77,12 @@ const LoginScreen = ({
                             />
                         </div>
                         <div className={styles.rememberAndForget}></div>
-                        <button
-                            type="submit"
-                            className={styles.buttonEnter}
-                            data-loading={loading}
-                        >
+                        <button type="submit" className={styles.buttonEnter} data-loading={loading}>
                             <span>{t("Enter")}</span>
                         </button>
                         <footer>
                             <p>{t("No account")}?</p>
-                            <a onClick={() => setState("registration")}>Зарегистрируйтесь</a>
+                            <Link href="?state=registration">Зарегистрируйтесь</Link>
                         </footer>
                     </form>
                 </section>

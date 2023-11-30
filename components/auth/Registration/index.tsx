@@ -6,24 +6,20 @@ import { useTranslation } from "react-i18next"
 import { useSearchParams } from "next/navigation"
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
 
+import { ISetOfferOrTerms } from "../ModalTerms/types"
 import type { TTypeMainScreen } from "../Main/components/types/types"
 
 import { cx } from "@/lib/cx"
 import { useAuth } from "@/store/state"
 import { checkExEmail } from "@/lib/regEx"
+import { usePush } from "@/hooks/usePath"
 import { registerUser, type IDataRegister } from "@/services/login"
 
 import styles from "./styles/style.module.scss"
-import { ISetOfferOrTerms } from "../ModalTerms/types"
 
-const Registration = ({
-    setState,
-    setIsVisibleType,
-}: {
-    setState: Dispatch<SetStateAction<TTypeMainScreen>>
-    setIsVisibleType: Dispatch<SetStateAction<ISetOfferOrTerms>>
-}) => {
+const Registration = ({ setIsVisibleType }: { setIsVisibleType: Dispatch<SetStateAction<ISetOfferOrTerms>> }) => {
     const { t } = useTranslation()
+    const { handleReplace } = usePush()
     const [loading, setLoading] = useState(false)
     const SearchParams = useSearchParams()
     const invited = SearchParams.get("invited-token")
@@ -150,20 +146,12 @@ const Registration = ({
                             placeholder={`${t("Enter the password")!} (повторно)`}
                             onChange={(value) => setValue("password_", value.target.value!)}
                         />
-                        {errors.password_ || errors.password ? (
-                            <i>Что-то не то с паролем</i>
-                        ) : null}
-                        {watch("password") !== watch("password_") && (
-                            <i>Пароли не совпадает</i>
-                        )}
+                        {errors.password_ || errors.password ? <i>Что-то не то с паролем</i> : null}
+                        {watch("password") !== watch("password_") && <i>Пароли не совпадает</i>}
                     </section>
                     <section>
                         <label>Код приглашения</label>
-                        <input
-                            type="text"
-                            {...register("invited")}
-                            placeholder={t("Your promo code (optional field)")}
-                        />
+                        <input type="text" {...register("invited")} placeholder={t("Your promo code (optional field)")} />
                     </section>
                 </section>
                 <div className={styles.isTerms} {...register("isTerms", { required: true })}>
@@ -177,35 +165,15 @@ const Registration = ({
                         </div>
                         <p>
                             Потверждаю ознакомление и согласие с условиями{" "}
-                            <span
-                                onClick={() =>
-                                    setIsVisibleType({ visible: true, type: "offer" })
-                                }
-                            >
-                                Публичной оферты
-                            </span>{" "}
-                            и{" "}
-                            <span
-                                onClick={() =>
-                                    setIsVisibleType({ visible: true, type: "terms" })
-                                }
-                            >
-                                Условия использования
-                            </span>{" "}
-                            в полном объёме
+                            <span onClick={() => setIsVisibleType({ visible: true, type: "offer" })}>Публичной оферты</span> и{" "}
+                            <span onClick={() => setIsVisibleType({ visible: true, type: "terms" })}>Условия использования</span> в
+                            полном объёме
                         </p>
                     </section>
-                    {!watch("isTerms") && (
-                        <i>Без потверждения и согласия мы вас не можем зарегистрировать</i>
-                    )}
+                    {!watch("isTerms") && <i>Без потверждения и согласия мы вас не можем зарегистрировать</i>}
                 </div>
                 <footer>
-                    <button
-                        data-regular
-                        onClick={() => {
-                            setState("login")
-                        }}
-                    >
+                    <button data-regular onClick={() => handleReplace("?state=login")} type="button">
                         <span>{t("Enter")}</span>
                     </button>
                     <button type="submit" data-success data-loading={loading}>

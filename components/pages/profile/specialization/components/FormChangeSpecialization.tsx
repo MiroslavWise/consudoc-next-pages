@@ -33,7 +33,7 @@ export const FormChangeSpecialization = () => {
         queryKey: ["specializations"],
         refetchOnWindowFocus: false,
     })
-    const { data: specializationsAll } = useQuery({
+    const { data: specializationsAll, refetch } = useQuery({
         queryFn: () => getSpecializationsAllList(),
         queryKey: ["specializations_all"],
         refetchOnWindowFocus: false,
@@ -83,7 +83,9 @@ export const FormChangeSpecialization = () => {
                 // additional_info: values?.additional,
             }
             editSpecialization(Number(idSpecialization), data).then((response) => {
-                handlePush("/specialization")
+                refetch().finally(() => {
+                    handlePush("/specialization")
+                })
             })
         } else {
             const data: IDataReplaceSpec = {
@@ -96,7 +98,9 @@ export const FormChangeSpecialization = () => {
                 // additional_info: values?.additional,
             }
             addSpecialization(data).then((response) => {
-                handlePush("/specialization")
+                refetch().finally(() => {
+                    handlePush("/specialization")
+                })
             })
         }
     })
@@ -144,14 +148,6 @@ export const FormChangeSpecialization = () => {
                         {...register("cost", { required: true })}
                     />
                     {errors?.cost && <i>Введите стоимость специальности!!!</i>}
-                </LabelInput>
-                <LabelInput label="Район или адрес вашего проживания:">
-                    <input
-                        type="text"
-                        maxLength={256}
-                        placeholder="Введите место вашего проживания"
-                        {...register("address", { required: false })}
-                    />
                 </LabelInput>
                 <LabelInput label="Дополнительные сведения о специальности:">
                     <input

@@ -3,21 +3,18 @@
     flex-direction: column;
     gap: 18px;
 
-    li {
+    li,
+    a {
         cursor: pointer;
-        span {
-            color: var(--gray-400);
-            font-size: 20px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 25px;
-            transition: all 0.2s ease-in-out 0.01s;
-        }
+        color: var(--gray-400);
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 25px;
+        transition: color var(--transition);
 
-        &.active {
-            span {
-                color: var(--color-text);
-            }
+        &[data-active="true"] {
+            color: var(--gray-900);
         }
     }
 }

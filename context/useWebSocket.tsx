@@ -1,13 +1,4 @@
-import {
-    type Dispatch,
-    type FC,
-    type ReactNode,
-    type SetStateAction,
-    createContext,
-    useContext,
-    useEffect,
-    useState,
-} from "react"
+import { type Dispatch, type FC, type ReactNode, type SetStateAction, createContext, useContext, useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import { useQuery } from "@tanstack/react-query"
 
@@ -37,7 +28,7 @@ export const ProviderWebSocket: FC<{ children: ReactNode }> = ({ children }) => 
 
     const { refetch } = useQuery({
         queryFn: () => getProfile(),
-        queryKey: ["profile-me", token!],
+        queryKey: ["profile", token],
         enabled: false,
     })
 

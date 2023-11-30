@@ -236,23 +236,6 @@ div {
     --gradient-error: linear-gradient(180deg, rgba(249, 112, 102, 0.4) 0%, rgba(122, 39, 26, 0.4) 100%);
 }
 
-[data-theme="dark"] {
-    --background: rgb(20, 20, 20);
-    --background-input: #181818;
-    --color-text: rgb(235, 235, 235);
-
-    --gray-900: #fff;
-    --gray-800: #e8e8ea;
-    --gray-700: #d1d2d6;
-    --gray-600: #a3a5ac;
-    --gray-500: #888a93;
-    --gray-400: #3f4251;
-    --gray-300: #5a5d6a;
-    --gray-200: #3f4251;
-    --gray-100: #2c3041;
-    --gray-50: #232738;
-}
-
 .ant-modal-content {
     background: var(--background) !important;
 }

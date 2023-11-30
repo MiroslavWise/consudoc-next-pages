@@ -7,11 +7,9 @@ import { useSearchParams } from "next/navigation"
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
 
 import { ISetOfferOrTerms } from "../ModalTerms/types"
-import type { TTypeMainScreen } from "../Main/components/types/types"
 
 import { cx } from "@/lib/cx"
 import { useAuth } from "@/store/state"
-import { checkExEmail } from "@/lib/regEx"
 import { usePush } from "@/hooks/usePath"
 import { registerUser, type IDataRegister } from "@/services/login"
 
@@ -118,7 +116,6 @@ const Registration = ({ setIsVisibleType }: { setIsVisibleType: Dispatch<SetStat
                             type="email"
                             {...register("email", {
                                 required: true,
-                                validate: (value) => checkExEmail(value),
                             })}
                             placeholder="example@mail.org"
                         />

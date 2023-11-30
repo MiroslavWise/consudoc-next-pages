@@ -1,36 +1,33 @@
 "use client"
 
-import { useRouter } from "next/router"
-
-import { cx } from "@/lib/cx"
-import { usePush } from "@/hooks/usePath"
+import Link from "next/link"
+import { useSearchParams } from "next/navigation"
 
 import styles from "./styles/links.module.scss"
 
 export const LinksButtons = () => {
-    const {
-        query: { current },
-    } = useRouter()
-    const { handlePush } = usePush()
+    const current = useSearchParams().get("current")
 
     return (
         <ul className={styles.container}>
             {LINKS.map((item) => (
-                <li
+                <Link
+                    href={`/pay-data?current=${item.value}`}
                     key={`${item.value}-links-pay-data`}
-                    onClick={() => {
-                        handlePush(`/pay-data?current=${item.value}`)
-                    }}
-                    className={cx(current?.includes(item.value) && styles.active)}
+                    data-active={current?.includes(item.value)}
                 >
                     <span>{item.label}</span>
-                </li>
+                </Link>
             ))}
         </ul>
     )
 }
 
 export const LINKS: ILinks[] = [
+    {
+        label: "Транзакции",
+        value: "order",
+    },
     {
         label: "Пополнение",
         value: "replenishment",
@@ -46,8 +43,5 @@ interface ILinks {
     value: TLinksValuePay
 }
 
-export type TLinksValuePay =
-    | "analytics"
-    | "replenishment"
-    | "referral-system"
+export type TLinksValuePay = "analytics" | "replenishment" | "referral-system" | "order"
 export const LINK_VALUES: TLinksValuePay[] = ["analytics", "referral-system", "replenishment"]

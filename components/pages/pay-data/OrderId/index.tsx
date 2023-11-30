@@ -48,37 +48,31 @@ export const OrderId = memo(function OrderId() {
         return status
     }, [data?.res?.status])
 
-    // useEffect(() => {
-    //     if (status) {
-    //         if (["charged", "declined", "fraud", "rejected", "error", "validation"].includes(status)) {
-    //             const timeOut = setTimeout(() => {
-    //                 handlePush(`/doctors`, undefined)
-    //             }, 7 * 1000)
-
-    //             return () => clearTimeout(timeOut)
-    //         }
-    //     }
-    // }, [status])
-
     if (isLoading) return null
 
     return (
         <div className={styles.container}>
-            <section data-status={status}>
-                <p>
-                    {status === "charged"
-                        ? "Платёж поступил, и вы можете воспользоваться услугами консультации!"
-                        : status === "new"
-                        ? "Идёт транзакция поступления средств на ваш счёт. Это может занять несколько минут, и вы получите уведомление о поступлении средств!"
-                        : status === "validation"
-                        ? "Транзакция не прошла валидацию. Повторите операцию через несколько минут"
-                        : status === "error"
-                        ? "Произошла какая-то ошибка платежа. Наш сервис разбирается в ней. Попробуйте, пожалуйста, чуть позже"
-                        : status === "declined"
-                        ? "Транзакция была отклонена"
-                        : null}
-                </p>
-            </section>
+            {orderId && status ? (
+                <section data-status={status}>
+                    <p>
+                        {status === "charged"
+                            ? "Платёж поступил, и вы можете воспользоваться услугами консультации!"
+                            : status === "new"
+                            ? "Идёт транзакция поступления средств на ваш счёт. Это может занять несколько минут, и вы получите уведомление о поступлении средств!"
+                            : status === "validation"
+                            ? "Транзакция не прошла валидацию. Повторите операцию через несколько минут"
+                            : status === "error"
+                            ? "Произошла какая-то ошибка платежа. Наш сервис разбирается в ней. Попробуйте, пожалуйста, чуть позже"
+                            : status === "declined"
+                            ? "Транзакция была отклонена"
+                            : null}
+                    </p>
+                </section>
+            ) : (
+                <section>
+                    <p>В даанный момент у вас нет активных транзакций или переводов, которые выполняются</p>
+                </section>
+            )}
         </div>
     )
 })

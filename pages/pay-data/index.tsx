@@ -1,19 +1,18 @@
-import { useRouter } from "next/router"
+import { useSearchParams } from "next/navigation"
 
+import { Orders } from "@/components/pages/pay-data/Orders"
 import { OrderId } from "@/components/pages/pay-data/OrderId"
 import { ProfileLayout } from "@/components/layout/ProfileLayout"
 import { Replenishment } from "@/components/pages/pay-data/Replenishment"
 import { ReferralSystem } from "@/components/pages/pay-data/ReferralSystem"
-import { LINKS, LinksButtons } from "@/components/pages/pay-data/components/LinksButtons"
+import { LINKS, LinksButtons, TLinksValuePay } from "@/components/pages/pay-data/components/LinksButtons"
 
 import stylesLayout from "./layout.module.scss"
-import { useSearchParams } from "next/navigation"
 
 export default function PayData() {
-    const orderId = useSearchParams().get("order-id")
-    const {
-        query: { current },
-    } = useRouter()
+    const search = useSearchParams()
+    const current = search.get("current") as TLinksValuePay
+    const orderId = search.get("order-id")
 
     return (
         <ProfileLayout>
@@ -35,11 +34,12 @@ export default function PayData() {
                             <Replenishment />
                         ) : current === "referral-system" ? (
                             <ReferralSystem />
-                        ) : !!orderId ? (
+                        ) : orderId || current === "order" ? (
                             <OrderId />
                         ) : null}
                     </div>
                 </section>
+                {current === "order" ? <Orders /> : null}
             </div>
         </ProfileLayout>
     )

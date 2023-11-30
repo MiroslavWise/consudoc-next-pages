@@ -1,0 +1,126 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+
+    & > section {
+        max-width: 410px;
+        width: 100%;
+        border-radius: 24px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid var(--gray-300);
+        width: 100%;
+        box-shadow: none !important;
+
+        & > ul {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+            overflow-y: auto;
+
+            & > a {
+                padding: 1rem;
+                width: 100%;
+                cursor: pointer;
+                border-bottom: 1px solid var(--gray-200);
+                position: relative;
+                background: transparent;
+                transition: background var(--transition);
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+
+                & > [data-time] {
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    white-space: nowrap;
+                    text-align: end;
+                    color: var(--gray-400);
+                    font-size: 10px;
+                    font-style: normal;
+                    font-weight: 500;
+                    letter-spacing: 0.3px;
+                }
+
+                & > article {
+                    display: inline-flex;
+                    gap: 16px;
+                    background: transparent;
+                    width: 100%;
+
+                    & > img {
+                        height: 40px;
+                        width: 40px;
+                        border-radius: 50%;
+                        border: 1px solid var(--gray-200);
+                        object-fit: cover;
+                        aspect-ratio: 1/1;
+                    }
+
+                    & > span {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-around;
+                        align-items: flex-start;
+
+                        h5 {
+                            color: var(--gray-900, #101828);
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 600;
+                            letter-spacing: -0.2px;
+                            width: 100%;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                        }
+
+                        label {
+                            width: auto;
+                            color: var(--gray-500);
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 500 !important;
+                            letter-spacing: -0.3px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                }
+
+                & > p {
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    color: var(--gray-500);
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 20px;
+                    letter-spacing: -0.5px;
+                }
+
+                &[data-active="true"] {
+                    background: var(--gray-100);
+                }
+            }
+        }
+
+        & > p {
+            padding: 16px;
+            color: var(--gray-500);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px;
+            letter-spacing: -0.2px;
+        }
+    }
+}

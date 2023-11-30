@@ -28,12 +28,12 @@ interface IFormValues {
 export const FormChangeSpecialization = () => {
     const idSpecialization = useSearchParams().get("id")
     const { handlePush } = usePush()
-    const { data } = useQuery({
+    const { data, refetch } = useQuery({
         queryFn: () => getSpecializations(),
         queryKey: ["specializations"],
         refetchOnWindowFocus: false,
     })
-    const { data: specializationsAll, refetch } = useQuery({
+    const { data: specializationsAll } = useQuery({
         queryFn: () => getSpecializationsAllList(),
         queryKey: ["specializations_all"],
         refetchOnWindowFocus: false,
